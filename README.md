@@ -194,11 +194,11 @@ A modern e-commerce storefront built with Next.js 15 (App Router), TypeScript, a
 - [i18n/routing.ts](i18n/routing.ts) - Defines supported locales and routing behavior
 - [i18n/request.ts](i18n/request.ts) - Loads message catalogs dynamically per locale
 - **Message Files** - Each includes translations + localized language names (for language switcher):
-  - [messages/en.json](messages/en.json) - English translations + language names
-  - [messages/zh-hant.json](messages/zh-hant.json) - Traditional Chinese + language names in Traditional Chinese
-  - [messages/zh-hans.json](messages/zh-hans.json) - Simplified Chinese + language names in Simplified Chinese  
-  - [messages/ja.json](messages/ja.json) - Japanese translations + language names in Japanese
-  - [messages/ko.json](messages/ko.json) - Korean translations + language names in Korean
+  - [translations/en.json](translations/en.json) - English translations + language names
+  - [translations/zh-hant.json](translations/zh-hant.json) - Traditional Chinese + language names in Traditional Chinese
+  - [translations/zh-hans.json](translations/zh-hans.json) - Simplified Chinese + language names in Simplified Chinese  
+  - [translations/ja.json](translations/ja.json) - Japanese translations + language names in Japanese
+  - [translations/ko.json](translations/ko.json) - Korean translations + language names in Korean
 
 ### WooCommerce Integration
 
@@ -376,7 +376,7 @@ bearbrick-popup-store/
 │   ├── woocommerce.ts               # WooCommerce REST API client
 │   └── utils.ts                     # Utility functions (cn classname merger)
 │
-├── messages/
+├── translations/
 │   ├── en.json                      # English translations
 │   ├── zh-hant.json                 # Traditional Chinese translations
 │   ├── zh-hans.json                 # Simplified Chinese translations
