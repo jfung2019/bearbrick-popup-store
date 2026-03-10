@@ -1,0 +1,40 @@
+{
+  "languages": {
+    "en": "英文",
+    "zh-hant": "繁体中文",
+    "zh-hans": "简体中文",
+    "ja": "日文",
+    "ko": "韩文"
+  },
+  "Home": {
+    "title": "BE@RBRICK 快闪店",
+    "description": "已建立 Next.js 15 商店骨架，包含 WooCommerce、Zustand 购物车与 next-intl。",
+    "browseProducts": "浏览商品",
+    "goToCheckout": "前往结账"
+  },
+  "Products": {
+    "title": "商品列表",
+    "description": "已建立第一版 WooCommerce 商品列表页。",
+    "addToCart": "加入购物车",
+    "price": "HK${value}",
+    "empty": "目前没有可显示的商品。",
+    "error": "无法加载商品。请检查 WooCommerce 环境变量与密钥设置。",
+    "imageFallback": "无图片"
+  },
+  "Checkout": {
+    "title": "结账",
+    "description": "确认购物车内容并完成付款。",
+    "cartTitle": "订单摘要",
+    "emptyCart": "你的购物车目前是空的。",
+    "subtotal": "小计",
+    "shipping": "运费",
+    "shippingPlaceholder": "待定",
+    "total": "订单总额",
+    "clearCart": "清空购物车",
+    "remove": "移除",
+    "paymentTitle": "付款",
+    "paymentBody": "此步骤将接入 Airwallex 付款流程。",
+    "paymentDisabled": "请先加入至少一件商品后再付款。",
+    "airwallexPlaceholder": "TODO：初始化 Airwallex Elements / Drop-in，并在服务端创建 payment intent 后确认订单。"
+  }
+}

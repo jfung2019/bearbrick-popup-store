@@ -1,0 +1,40 @@
+{
+  "languages": {
+    "en": "영어",
+    "zh-hant": "번체 중국어",
+    "zh-hans": "간체 중국어",
+    "ja": "일본어",
+    "ko": "한국어"
+  },
+  "Home": {
+    "title": "BE@RBRICK 팝업 스토어",
+    "description": "WooCommerce, Zustand 장바구니, next-intl을 포함한 Next.js 15 스토어프론트를 초기 구성했습니다.",
+    "browseProducts": "상품 보기",
+    "goToCheckout": "결제로 이동"
+  },
+  "Products": {
+    "title": "상품",
+    "description": "WooCommerce API 기반의 첫 상품 목록 페이지입니다.",
+    "addToCart": "장바구니에 추가",
+    "price": "HK${value}",
+    "empty": "표시할 상품이 없습니다.",
+    "error": "상품을 불러올 수 없습니다. WooCommerce 환경 변수와 인증 정보를 확인하세요.",
+    "imageFallback": "이미지 없음"
+  },
+  "Checkout": {
+    "title": "결제",
+    "description": "장바구니를 확인하고 결제를 완료하세요.",
+    "cartTitle": "주문 요약",
+    "emptyCart": "장바구니가 비어 있습니다.",
+    "subtotal": "소계",
+    "shipping": "배송비",
+    "shippingPlaceholder": "미정",
+    "total": "총 주문 금액",
+    "clearCart": "장바구니 비우기",
+    "remove": "삭제",
+    "paymentTitle": "결제 수단",
+    "paymentBody": "이 단계에서 Airwallex 결제를 연동합니다.",
+    "paymentDisabled": "결제를 활성화하려면 상품을 1개 이상 추가하세요.",
+    "airwallexPlaceholder": "TODO: Airwallex Elements / Drop-in을 초기화하고, 서버에서 payment intent를 생성한 뒤 주문을 확정합니다."
+  }
+}

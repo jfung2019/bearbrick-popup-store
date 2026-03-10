@@ -1,12 +1,13 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { routing } from "@/i18n/routing";
 
 export function LanguageSwitcher() {
   const locale = useLocale();
+  const t = useTranslations("languages");
   const router = useRouter();
   const pathname = usePathname();
 
@@ -27,9 +28,8 @@ export function LanguageSwitcher() {
           variant={locale === loc ? "default" : "outline"}
           size="sm"
           onClick={() => switchLocale(loc)}
-          className="uppercase"
         >
-          {loc}
+          {t(loc)}
         </Button>
       ))}
     </div>

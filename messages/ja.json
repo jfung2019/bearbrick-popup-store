@@ -1,0 +1,40 @@
+{
+  "languages": {
+    "en": "英語",
+    "zh-hant": "繁体中文",
+    "zh-hans": "簡体中文",
+    "ja": "日本語",
+    "ko": "韓国語"
+  },
+  "Home": {
+    "title": "BE@RBRICK ポップアップストア",
+    "description": "Next.js 15 ストアフロント（WooCommerce、Zustand カート、next-intl）を初期構築しました。",
+    "browseProducts": "商品を見る",
+    "goToCheckout": "チェックアウトへ"
+  },
+  "Products": {
+    "title": "商品",
+    "description": "WooCommerce API を利用した最初の一覧ページです。",
+    "addToCart": "カートに追加",
+    "price": "HK${value}",
+    "empty": "現在表示できる商品がありません。",
+    "error": "商品を読み込めませんでした。WooCommerce の環境変数と認証情報を確認してください。",
+    "imageFallback": "画像なし"
+  },
+  "Checkout": {
+    "title": "チェックアウト",
+    "description": "カート内容を確認して支払いを完了します。",
+    "cartTitle": "注文サマリー",
+    "emptyCart": "カートは空です。",
+    "subtotal": "小計",
+    "shipping": "送料",
+    "shippingPlaceholder": "未定",
+    "total": "注文合計",
+    "clearCart": "カートを空にする",
+    "remove": "削除",
+    "paymentTitle": "お支払い",
+    "paymentBody": "このステップで Airwallex 決済を組み込みます。",
+    "paymentDisabled": "支払いを有効にするには、商品を 1 点以上追加してください。",
+    "airwallexPlaceholder": "TODO: Airwallex Elements / Drop-in を初期化し、サーバー側で payment intent を作成してから注文を確定します。"
+  }
+}

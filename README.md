@@ -42,7 +42,11 @@ A modern e-commerce storefront built with Next.js 15 (App Router), TypeScript, a
   - State unchanged on validation failures
 - **Benefits**: Prevents cart corruption, better UX, clearer debugging
 
-#### 4. Bug Fixes
+#### 4. Localized Language Switcher
+- **Updated language switcher labels**: Now displays language names in the current locale
+  - Each message file includes `languages` object with localized names
+  - Example: In Traditional Chinese, buttons show "英文", "繁體中文", "簡體中文", "日本語", "韓文"
+  - Fix: Switched from hardcoded labels to `useTranslations("languages")` hook
 - **Fixed language switcher path handling**: Replaced simple string replace with regex
   - Old: `pathname.replace(\`/${locale}\`, "")` (breaks on paths like `/en/english-tea`)
   - New: `pathname.replace(new RegExp(\`^/${locale}\`), "")` (only matches at path start)
@@ -83,7 +87,7 @@ A modern e-commerce storefront built with Next.js 15 (App Router), TypeScript, a
 - **Zustand persist middleware** - Persist cart state to localStorage
 
 ### Internationalization
-- **next-intl** - i18n routing and translations (English & Chinese)
+- **next-intl** - i18n routing and translations (5 supported locales: English, Traditional Chinese, Simplified Chinese, Japanese, Korean)
 
 ### Backend Integration
 - **WooCommerce REST API** - Product catalog and order management
@@ -183,12 +187,18 @@ A modern e-commerce storefront built with Next.js 15 (App Router), TypeScript, a
 **Middleware Layer** ([middleware.ts](middleware.ts))
 - Intercepts all requests
 - Determines user locale based on URL path, cookies, or Accept-Language header
-- Redirects to localized routes (e.g., `/` → `/en` or `/zh`)
+- Redirects to localized routes (e.g., `/` → `/en`, `/zh-hant`, `/zh-hans`, `/ja`, or `/ko`)
+- Supports 5 locales: `en`, `zh-hant` (Traditional Chinese), `zh-hans` (Simplified Chinese), `ja` (Japanese), `ko` (Korean)
 
 **i18n Configuration**
-- [i18n/routing.ts](i18n/routing.ts) - Defines supported locales (`en`, `zh`) and routing behavior
+- [i18n/routing.ts](i18n/routing.ts) - Defines supported locales and routing behavior
 - [i18n/request.ts](i18n/request.ts) - Loads message catalogs dynamically per locale
-- [messages/en.json](messages/en.json) & [messages/zh.json](messages/zh.json) - Translation files
+- **Message Files** - Each includes translations + localized language names (for language switcher):
+  - [messages/en.json](messages/en.json) - English translations + language names
+  - [messages/zh-hant.json](messages/zh-hant.json) - Traditional Chinese + language names in Traditional Chinese
+  - [messages/zh-hans.json](messages/zh-hans.json) - Simplified Chinese + language names in Simplified Chinese  
+  - [messages/ja.json](messages/ja.json) - Japanese translations + language names in Japanese
+  - [messages/ko.json](messages/ko.json) - Korean translations + language names in Korean
 
 ### WooCommerce Integration
 
@@ -348,7 +358,7 @@ bearbrick-popup-store/
 │   │   ├── add-to-cart-button.tsx   # Client button for adding items
 │   │   ├── checkout-cart-summary.tsx # Cart items + quantity controls
 │   │   └── checkout-payment-section.tsx # Payment UI with totals
-│   ├── language-switcher.tsx        # EN/ZH locale toggle button
+│   ├── language-switcher.tsx        # Locale toggle (EN / 繁中 / 简中 / 日本語 / 한국어)
 │   └── ui/
 │       ├── button.tsx               # shadcn/ui Button component
 │       └── ...                      # Other shadcn components
@@ -368,7 +378,10 @@ bearbrick-popup-store/
 │
 ├── messages/
 │   ├── en.json                      # English translations
-│   └── zh.json                      # Chinese translations
+│   ├── zh-hant.json                 # Traditional Chinese translations
+│   ├── zh-hans.json                 # Simplified Chinese translations
+│   ├── ja.json                      # Japanese translations
+│   └── ko.json                      # Korean translations
 │
 ├── public/
 │   └── fonts/                       # ✨ Self-hosted fonts (REQUIRED)
@@ -429,9 +442,20 @@ bearbrick-popup-store/
 - **Performance:** Hook consolidates selectors to reduce re-renders
 
 ### Locale Routing
-- URLs must include locale prefix: `/en/products`, `/zh/checkout`
+- 5 supported locales: `en` (English), `zh-hant` (Traditional Chinese), `zh-hans` (Simplified Chinese), `ja` (Japanese), `ko` (Korean)
+- URLs must include locale prefix: `/en/products`, `/zh-hant/checkout`, `/zh-hans/products`, `/ja/checkout`, `/ko/products`
 - Direct access to `/products` will redirect to `/en/products` (default locale)
-- Locale is determined by URL → cookie → browser header
+- Locale is determined by URL → cookie → browser Accept-Language header
+
+### Language Switcher
+- Located in header with buttons for each locale
+- **Localized labels**: Button labels change based on current locale
+  - In English: "English", "Traditional Chinese", "Simplified Chinese", "Japanese", "Korean"
+  - In Traditional Chinese: "英文", "繁體中文", "簡體中文", "日本語", "韓文"
+  - In Simplified Chinese: "英文", "繁体中文", "简体中文", "日文", "韩文"
+  - Similar localization for Japanese and Korean
+- Implementation: Uses `useTranslations("languages")` hook to load localized names from message files
+- Clicking a button switches locale and preserves current page path
 
 ### WooCommerce API Caching
 - Product fetches use Next.js revalidation (configured in `APP_CONFIG.cache`)
@@ -534,6 +558,13 @@ Response: { shippingMethods: [{ id, label, cost }] }
 - [ ] Lazy-load product images
 - [ ] Implement infinite scroll for product listing
 - [ ] Add loading skeletons for better UX
+- [ ] (Optional) Optimize first-visit checkout load (route warm-up)
+  - **Why**: First checkout visit can be slightly slower due to initial JS/font/message loading; second visit is usually instant from cache.
+  - **Options**: Add route prefetch for checkout links, reduce client bundle size for checkout components, and profile hydration/network waterfall in production mode.
+  - **Implement in existing files**:
+    - Route prefetch: [app/[locale]/page.tsx](app/[locale]/page.tsx) and [app/[locale]/layout.tsx](app/[locale]/layout.tsx)
+    - Checkout payload/hydration optimization: [app/[locale]/checkout/page.tsx](app/[locale]/checkout/page.tsx)
+    - Client bundle trimming: [components/cart/checkout-cart-summary.tsx](components/cart/checkout-cart-summary.tsx) and [components/cart/checkout-payment-section.tsx](components/cart/checkout-payment-section.tsx)
 
 ### Low Priority
 
