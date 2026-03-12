@@ -9,20 +9,25 @@ export function NavCart() {
   const locale = useLocale();
   const tHome = useTranslations("Home");
   const tCheckout = useTranslations("Checkout");
-  const { items } = useCart();
+  const { items, totalItems } = useCart();
 
   return (
     <div className="group relative">
       <Link
         href={`/${locale}/cart`}
         aria-label={tHome("goToCart")}
-        className="inline-flex size-9 items-center justify-center rounded-md border"
+        className="relative inline-flex size-9 items-center justify-center rounded-md border"
       >
         <svg viewBox="0 0 24 24" aria-hidden="true" className="size-4" fill="none" stroke="currentColor" strokeWidth="2">
           <circle cx="9" cy="20" r="1" />
           <circle cx="18" cy="20" r="1" />
           <path d="M2 3h3l2.7 11.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 6H6" />
         </svg>
+        {totalItems > 0 ? (
+          <span className="absolute -right-1 -top-1 inline-flex min-w-4 items-center justify-center rounded-full bg-destructive p-1 text-[10px] font-medium leading-none text-destructive-foreground">
+            {totalItems}
+          </span>
+        ) : null}
       </Link>
 
       <div className="invisible absolute right-0 z-50 mt-2 w-80 rounded-md border bg-background p-3 opacity-0 shadow-sm transition-opacity group-hover:visible group-hover:opacity-100">

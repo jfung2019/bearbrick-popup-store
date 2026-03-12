@@ -7,6 +7,7 @@ A modern e-commerce storefront built with Next.js 15 (App Router), TypeScript, a
 - [Tech Stack](#tech-stack)
 - [Recent Improvements](#recent-improvements)
 - [Setup](#setup)
+- [Local WordPress Setup Guide](docs/local-wordpress-setup.md)
 - [Architecture & Logic](#architecture--logic)
 - [Project Structure](#project-structure)
 - [Things to Note](#things-to-note)
@@ -16,7 +17,29 @@ A modern e-commerce storefront built with Next.js 15 (App Router), TypeScript, a
 
 ## Recent Improvements
 
-### Code Quality & Architecture (Latest Update)
+### Navbar & Auth Foundation (Latest Update)
+
+#### 1. Navbar Enhancements
+- **Clickable logo**: BE@RBRICK logo now links to localized homepage (`/[locale]`)
+- **Language dropdown**: Replaced language button row with a single `<select>` dropdown — saves horizontal space, same locale-switch behavior
+- **Login icon**: Added person icon to navbar, opens WordPress `/my-account` in a new tab (temporary until custom auth is built)
+- **Cart badge**: Cart icon now shows live item count as a red badge — hides when cart is empty
+
+#### 2. JWT Authentication Setup (WordPress side — complete)
+- **Installed plugin**: JWT Authentication for WP REST API (tmeister) on Local by Flywheel site
+- **Configured `wp-config.php`**: Added `JWT_AUTH_SECRET_KEY` and `JWT_AUTH_CORS_ENABLE` above stop-editing line
+- **CORS enabled**: Plugin CORS toggle enabled in WP admin
+- **Endpoint available**: `POST /wp-json/jwt-auth/v1/token` returns signed JWT token on valid credentials
+- **Next step**: Build custom Next.js login/register pages that call this endpoint
+
+#### 3. WooCommerce Image Hosting Fix
+- **Updated `next.config.ts`**: Added remote pattern for `NEXT_PUBLIC_WORDPRESS_URL` host under `images.remotePatterns`
+- Restricts allowed image paths to `/wp-content/uploads/**`
+- Derived dynamically from env var — no hardcoded hostnames
+
+---
+
+### Code Quality & Architecture (Previous Update)
 
 #### 1. Centralized Configuration
 - **Created `lib/config.ts`**: Single source of truth for app-wide constants
@@ -43,7 +66,7 @@ A modern e-commerce storefront built with Next.js 15 (App Router), TypeScript, a
 - **Benefits**: Prevents cart corruption, better UX, clearer debugging
 
 #### 4. Localized Language Switcher
-- **Updated language switcher labels**: Now displays language names in the current locale
+- **Language dropdown**: Displays language names in the current locale via a `<select>` dropdown
   - Each message file includes `languages` object with localized names
   - Example: In Traditional Chinese, buttons show "英文", "繁體中文", "簡體中文", "日本語", "韓文"
   - Fix: Switched from hardcoded labels to `useTranslations("languages")` hook
@@ -100,12 +123,16 @@ A modern e-commerce storefront built with Next.js 15 (App Router), TypeScript, a
 
 ## Setup
 
+For full local backend instructions (LocalWP install, WooCommerce setup, JWT plugin setup, download links, and troubleshooting), see [Local WordPress Setup Guide](docs/local-wordpress-setup.md).
+
 ### Prerequisites
 - Node.js 18.18.0 or higher
 - npm or yarn package manager
 - WordPress site with WooCommerce installed
 - WooCommerce REST API credentials
-- **Geist fonts** (self-hosted for China GFW compliance)
+ - WooCommerce REST API credentials
+ - **JWT Authentication for WP REST API** plugin (tmeister) — for custom auth
+ - **Geist fonts** (self-hosted for China GFW compliance)
 
 ### Installation
 
@@ -157,6 +184,17 @@ A modern e-commerce storefront built with Next.js 15 (App Router), TypeScript, a
    - Click "Add key"
    - Set description, user, and permissions (Read/Write)
    - Copy the consumer key and secret
+
+  **JWT Authentication setup (for custom login/register):**
+  1. Install **JWT Authentication for WP REST API** (by tmeister) from WP plugin directory
+  2. Add to `wp-config.php` (above the "stop editing" line):
+    ```php
+    define('JWT_AUTH_SECRET_KEY', 'your-long-random-secret-here');
+    define('JWT_AUTH_CORS_ENABLE', true);
+    ```
+  3. Enable CORS toggle in the plugin's settings page in WP admin
+  4. Restart your web server / Local site to apply `wp-config.php` changes
+  5. Test: `POST /wp-json/jwt-auth/v1/token` with `{ username, password }` should return a token
 
 4. **Run development server**
    ```bash
@@ -448,7 +486,7 @@ bearbrick-popup-store/
 - Locale is determined by URL → cookie → browser Accept-Language header
 
 ### Language Switcher
-- Located in header with buttons for each locale
+- Located in header as a `<select>` dropdown
 - **Localized labels**: Button labels change based on current locale
   - In English: "English", "Traditional Chinese", "Simplified Chinese", "Japanese", "Korean"
   - In Traditional Chinese: "英文", "繁體中文", "簡體中文", "日本語", "韓文"
@@ -539,7 +577,12 @@ Response: { shippingMethods: [{ id, label, cost }] }
 - [ ] Stock status indicators
 
 #### 5. User Authentication
-- [ ] WooCommerce customer authentication
+- [x] WordPress JWT plugin configured (`jwt-auth/v1/token` endpoint active)
+- [ ] Custom Next.js login page (`/[locale]/login`)
+- [ ] Custom Next.js register page (`/[locale]/register`)
+- [ ] `NavUser` component — shows username when logged in, login button when not
+- [ ] Auth cookie management (`lib/auth.ts` — httpOnly JWT cookie)
+- [ ] Middleware protection for `/checkout` when unauthenticated
 - [ ] User profile management
 - [ ] Saved addresses
 - [ ] Order history per user

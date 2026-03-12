@@ -2,7 +2,6 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import { routing } from "@/i18n/routing";
 
 export function LanguageSwitcher() {
@@ -12,26 +11,29 @@ export function LanguageSwitcher() {
   const pathname = usePathname();
 
   const switchLocale = (newLocale: string) => {
-    // Remove current locale from pathname and add new one
-    // Use regex to only replace locale at the start of the path
     const pathWithoutLocale = pathname.replace(new RegExp(`^/${locale}`), "");
     const newPath = `/${newLocale}${pathWithoutLocale}`;
     router.push(newPath);
   };
 
   return (
-    <div className="flex items-center gap-2">
-      {routing.locales.map((loc) => (
-        <Button
-          key={loc}
-          type="button"
-          variant={locale === loc ? "default" : "outline"}
-          size="sm"
-          onClick={() => switchLocale(loc)}
-        >
-          {t(loc)}
-        </Button>
-      ))}
+    <div>
+      <label className="sr-only" htmlFor="language-selector">
+        Language
+      </label>
+      <select
+        id="language-selector"
+        value={locale}
+        onChange={(event) => switchLocale(event.target.value)}
+        className="h-9 rounded-md border border-input bg-background px-3 text-sm"
+        aria-label="Language selector"
+      >
+        {routing.locales.map((loc) => (
+          <option key={loc} value={loc}>
+            {t(loc)}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }

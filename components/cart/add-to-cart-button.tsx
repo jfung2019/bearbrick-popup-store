@@ -29,7 +29,7 @@ export function AddToCartButton({ product }: AddToCartButtonProps) {
     <Button
       type="button"
       onClick={handleAddToCart}
-      className="w-full"
+      className="w-full cursor-pointer"
       size="lg"
     >
       {t("addToCart")}
