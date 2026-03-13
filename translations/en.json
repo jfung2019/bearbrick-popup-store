@@ -13,6 +13,27 @@
     "goToCart": "Go to cart",
     "goToCheckout": "Go to checkout"
   },
+  "Auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "loginTitle": "Sign in",
+    "loginDescription": "Use your WordPress account credentials.",
+    "registerTitle": "Create account",
+    "registerDescription": "Create a customer account for checkout.",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "loggingIn": "Signing in...",
+    "loginFailed": "Unable to sign in. Please check your credentials.",
+    "createAccount": "Create account",
+    "creatingAccount": "Creating account...",
+    "registerFailed": "Unable to create account.",
+    "passwordMismatch": "Passwords do not match.",
+    "noAccount": "Don’t have an account?",
+    "haveAccount": "Already have an account?"
+  },
   "Products": {
     "title": "Products",
     "description": "First scaffolded listing page powered by WooCommerce API.",

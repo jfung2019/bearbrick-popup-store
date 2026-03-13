@@ -13,6 +13,27 @@
     "goToCart": "前往购物车",
     "goToCheckout": "前往结账"
   },
+  "Auth": {
+    "login": "登录",
+    "logout": "退出",
+    "register": "注册",
+    "loginTitle": "登录账户",
+    "loginDescription": "请使用你的 WordPress 账户登录。",
+    "registerTitle": "创建账户",
+    "registerDescription": "创建顾客账户以完成结账。",
+    "username": "用户名",
+    "email": "邮箱",
+    "password": "密码",
+    "confirmPassword": "确认密码",
+    "loggingIn": "登录中...",
+    "loginFailed": "无法登录，请检查账号和密码。",
+    "createAccount": "创建账户",
+    "creatingAccount": "创建中...",
+    "registerFailed": "无法创建账户。",
+    "passwordMismatch": "两次输入的密码不一致。",
+    "noAccount": "还没有账户？",
+    "haveAccount": "已经有账户？"
+  },
   "Products": {
     "title": "商品列表",
     "description": "已建立第一版 WooCommerce 商品列表页。",

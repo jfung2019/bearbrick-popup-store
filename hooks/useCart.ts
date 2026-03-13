@@ -4,22 +4,40 @@
  */
 
 import { useCartStore } from "@/store/useCartStore";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export function useCart() {
+  const [hasHydrated, setHasHydrated] = useState(false);
+
+  useEffect(() => {
+    setHasHydrated(useCartStore.persist.hasHydrated());
+
+    const unsubscribeHydrate = useCartStore.persist.onHydrate(() => {
+      setHasHydrated(false);
+    });
+
+    const unsubscribeFinishHydration = useCartStore.persist.onFinishHydration(() => {
+      setHasHydrated(true);
+    });
+
+    return () => {
+      unsubscribeHydrate();
+      unsubscribeFinishHydration();
+    };
+  }, []);
+
   // Memoized selectors
   const items = useCartStore((state) => state.items);
   const addItem = useCartStore((state) => state.addItem);
   const removeItem = useCartStore((state) => state.removeItem);
   const updateQuantity = useCartStore((state) => state.updateQuantity);
   const clearCart = useCartStore((state) => state.clearCart);
-  const getTotalItems = useCartStore((state) => state.getTotalItems);
-  const getSubtotal = useCartStore((state) => state.getSubtotal);
+  const hydratedItems = hasHydrated ? items : [];
 
   // Computed values
-  const totalItems = getTotalItems();
-  const subtotal = getSubtotal();
-  const isEmpty = items.length === 0;
+  const totalItems = hydratedItems.reduce((total, item) => total + item.quantity, 0);
+  const subtotal = hydratedItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  const isEmpty = hydratedItems.length === 0;
 
   // Enhanced actions with feedback
   const addItemWithFeedback = useCallback(
@@ -56,10 +74,11 @@ export function useCart() {
 
   return {
     // State
-    items,
+    items: hydratedItems,
     totalItems,
     subtotal,
     isEmpty,
+    hasHydrated,
 
     // Actions
     addItem: addItemWithFeedback,

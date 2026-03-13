@@ -13,6 +13,27 @@
     "goToCart": "カートへ",
     "goToCheckout": "チェックアウトへ"
   },
+  "Auth": {
+    "login": "ログイン",
+    "logout": "ログアウト",
+    "register": "新規登録",
+    "loginTitle": "サインイン",
+    "loginDescription": "WordPress アカウントでログインしてください。",
+    "registerTitle": "アカウント作成",
+    "registerDescription": "チェックアウト用の顧客アカウントを作成します。",
+    "username": "ユーザー名",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "confirmPassword": "パスワード（確認）",
+    "loggingIn": "ログイン中...",
+    "loginFailed": "ログインに失敗しました。認証情報を確認してください。",
+    "createAccount": "アカウントを作成",
+    "creatingAccount": "作成中...",
+    "registerFailed": "アカウントを作成できませんでした。",
+    "passwordMismatch": "確認用パスワードが一致しません。",
+    "noAccount": "アカウントをお持ちでないですか？",
+    "haveAccount": "すでにアカウントをお持ちですか？"
+  },
   "Products": {
     "title": "商品",
     "description": "WooCommerce API を利用した最初の一覧ページです。",

@@ -13,6 +13,27 @@
     "goToCart": "장바구니로 이동",
     "goToCheckout": "결제로 이동"
   },
+  "Auth": {
+    "login": "로그인",
+    "logout": "로그아웃",
+    "register": "회원가입",
+    "loginTitle": "로그인",
+    "loginDescription": "WordPress 계정으로 로그인하세요.",
+    "registerTitle": "계정 만들기",
+    "registerDescription": "결제를 위한 고객 계정을 생성합니다.",
+    "username": "사용자 이름",
+    "email": "이메일",
+    "password": "비밀번호",
+    "confirmPassword": "비밀번호 확인",
+    "loggingIn": "로그인 중...",
+    "loginFailed": "로그인할 수 없습니다. 계정 정보를 확인하세요.",
+    "createAccount": "계정 만들기",
+    "creatingAccount": "생성 중...",
+    "registerFailed": "계정을 만들 수 없습니다.",
+    "passwordMismatch": "비밀번호가 일치하지 않습니다.",
+    "noAccount": "계정이 없으신가요?",
+    "haveAccount": "이미 계정이 있으신가요?"
+  },
   "Products": {
     "title": "상품",
     "description": "WooCommerce API 기반의 첫 상품 목록 페이지입니다.",

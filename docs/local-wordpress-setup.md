@@ -58,7 +58,16 @@ Use these values in project `.env.local`:
 NEXT_PUBLIC_WORDPRESS_URL=https://your-site.local/
 WC_CONSUMER_KEY=ck_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 WC_CONSUMER_SECRET=cs_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+AUTH_COOKIE_SECRET=replace_with_long_random_secret
+AUTH_ALLOWED_ROLES=customer
+WP_ADMIN_USERNAME=your_wp_admin_username
+WP_ADMIN_APP_PASSWORD=xxxx xxxx xxxx xxxx xxxx xxxx
 ```
+
+Additional notes:
+- `WP_ADMIN_APP_PASSWORD` is from WordPress user profile: **Users → Profile → Application Passwords**.
+- `AUTH_COOKIE_SECRET` should be a long random value and must be different between local and production.
+- `AUTH_ALLOWED_ROLES` should normally stay as `customer` for storefront login.
 
 If LocalWP SSL is self-signed, keep this for local dev only:
 

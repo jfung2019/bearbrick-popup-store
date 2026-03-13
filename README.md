@@ -176,7 +176,17 @@ For full local backend instructions (LocalWP install, WooCommerce setup, JWT plu
    NEXT_PUBLIC_WORDPRESS_URL=https://your-wordpress-site.com
    WC_CONSUMER_KEY=ck_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
    WC_CONSUMER_SECRET=cs_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  AUTH_COOKIE_SECRET=replace_with_long_random_secret
+  AUTH_ALLOWED_ROLES=customer
+  WP_ADMIN_USERNAME=your_wp_admin_username
+  WP_ADMIN_APP_PASSWORD=xxxx xxxx xxxx xxxx xxxx xxxx
    ```
+
+  Notes:
+  - `AUTH_COOKIE_SECRET` is used to sign the auth session cookie.
+  - `AUTH_ALLOWED_ROLES` controls which WordPress roles can sign into storefront (`customer` by default).
+  - `WP_ADMIN_USERNAME` and `WP_ADMIN_APP_PASSWORD` are required for the custom register API route (`/api/auth/register`).
+  - Generate WordPress application password in **Users → Profile → Application Passwords**.
 
    **How to get WooCommerce credentials:**
    - Log in to your WordPress admin
@@ -464,6 +474,12 @@ bearbrick-popup-store/
 - **Server-side only:** `WC_CONSUMER_KEY`, `WC_CONSUMER_SECRET`
   - Never exposed to browser
   - Used in `lib/woocommerce.ts` for API authentication
+- **Server-side only:** `AUTH_COOKIE_SECRET`
+  - Used to sign and validate auth cookie payloads
+- **Server-side only:** `AUTH_ALLOWED_ROLES`
+  - Comma-separated role allowlist for storefront login (recommended: `customer`)
+- **Server-side only:** `WP_ADMIN_USERNAME`, `WP_ADMIN_APP_PASSWORD`
+  - Used by `/api/auth/register` to create customer accounts via WordPress REST API
 - **Public:** `NEXT_PUBLIC_WORDPRESS_URL`
   - Accessible in both server and client code
   - Used to construct API endpoints
