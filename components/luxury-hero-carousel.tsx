@@ -229,7 +229,7 @@ export function LuxuryHeroCarousel({
   };
 
   return (
-    <section className="relative isolate overflow-hidden bg-[#f5f1ea] text-slate-950">
+    <section className="relative isolate overflow-hidden bg-[#0b0d10] text-white">
       <div
         ref={viewportRef}
         className="relative min-h-[calc(100svh-73px)] w-full touch-pan-y"
@@ -266,7 +266,7 @@ export function LuxuryHeroCarousel({
           ))}
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[calc(100svh-73px)] max-w-7xl flex-col justify-end px-6 py-10 sm:px-8 lg:px-10 lg:py-12">
+        <div className="relative z-10 flex min-h-[calc(100svh-73px)] w-full flex-col justify-end px-6 py-10 sm:px-8 lg:px-10 lg:py-12">
           <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,1.05fr)_320px] lg:gap-10 xl:grid-cols-[minmax(0,1.1fr)_360px]">
             <div className="max-w-4xl pb-6 sm:pb-10 lg:pb-16">
               {heroSlides.map((slide, index) => (
@@ -290,7 +290,7 @@ export function LuxuryHeroCarousel({
                   <div className="mt-8 flex flex-wrap items-center gap-4">
                     <Link
                       href={slide.href}
-                      className="pointer-events-auto inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition-transform duration-300 hover:-translate-y-0.5"
+                      className="pointer-events-auto inline-flex items-center rounded-full bg-stone-100 px-6 py-3 text-sm font-semibold text-stone-950 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white"
                     >
                       {slide.ctaLabel}
                     </Link>
@@ -334,7 +334,7 @@ export function LuxuryHeroCarousel({
                 type="button"
                 aria-label="Previous slide"
                 onClick={() => goToSlide(activeIndexRef.current - 1)}
-                className="inline-flex size-12 items-center justify-center rounded-full border border-white/24 bg-white/10 backdrop-blur-md transition hover:bg-white/16"
+                className="inline-flex size-12 items-center justify-center rounded-full border border-white/15 bg-black/30 backdrop-blur-md transition hover:bg-white/12"
               >
                 <ChevronLeft className="size-5" />
               </button>
@@ -342,7 +342,7 @@ export function LuxuryHeroCarousel({
                 type="button"
                 aria-label="Next slide"
                 onClick={() => goToSlide(activeIndexRef.current + 1)}
-                className="inline-flex size-12 items-center justify-center rounded-full border border-white/24 bg-white/10 backdrop-blur-md transition hover:bg-white/16"
+                className="inline-flex size-12 items-center justify-center rounded-full border border-white/15 bg-black/30 backdrop-blur-md transition hover:bg-white/12"
               >
                 <ChevronRight className="size-5" />
               </button>
