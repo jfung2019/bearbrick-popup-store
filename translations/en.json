@@ -33,6 +33,35 @@
           "cta": "Browse featured pieces"
         }
       }
+    },
+    "whatsOn": {
+      "kicker": "Now showing",
+      "title": "Current pop-up highlights",
+      "description": "A quick look at the limited drops, previews, and collector moments happening right now.",
+      "viewAll": "View all products",
+      "items": {
+        "dropWeekend": {
+          "date": "Mar 22-24",
+          "tag": "Limited drop",
+          "title": "Weekend capsule release",
+          "description": "A short-run BE@RBRICK colorway drop with limited inventory across the pop-up edit.",
+          "cta": "Shop this drop"
+        },
+        "studioPreview": {
+          "date": "Mar 26",
+          "tag": "Preview",
+          "title": "Studio concept preview",
+          "description": "An early look at upcoming pieces and campaign visuals before the next public launch.",
+          "cta": "View preview"
+        },
+        "collectorNight": {
+          "date": "Mar 29",
+          "tag": "Members",
+          "title": "Collector night early access",
+          "description": "Member-only access to selected pieces, early checkout windows, and special packaging.",
+          "cta": "Explore member picks"
+        }
+      }
     }
   },
   "Auth": {

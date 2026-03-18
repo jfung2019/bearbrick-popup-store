@@ -33,6 +33,35 @@
           "cta": "瀏覽精選單品"
         }
       }
+    },
+    "whatsOn": {
+      "kicker": "最新動態",
+      "title": "快閃店當前焦點",
+      "description": "快速查看正在進行的限量發售、預覽活動與藏家專屬時段。",
+      "viewAll": "查看所有商品",
+      "items": {
+        "dropWeekend": {
+          "date": "3月22-24日",
+          "tag": "限量發售",
+          "title": "週末限定系列上架",
+          "description": "推出短期間限量配色，數量有限，售完即止。",
+          "cta": "選購本次發售"
+        },
+        "studioPreview": {
+          "date": "3月26日",
+          "tag": "預覽",
+          "title": "工作室概念預覽",
+          "description": "下一波系列正式開賣前，率先查看即將登場的作品與視覺。",
+          "cta": "查看預覽"
+        },
+        "collectorNight": {
+          "date": "3月29日",
+          "tag": "會員",
+          "title": "藏家之夜搶先入場",
+          "description": "會員可優先選購指定款式，並享有限定包裝。",
+          "cta": "探索會員精選"
+        }
+      }
     }
   },
   "Auth": {
