@@ -3,6 +3,7 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Navbar } from "@/components/navbar";
+import Footer from "@/components/footer";
 
 type LocaleLayoutProps = {
   children: React.ReactNode;
@@ -28,6 +29,7 @@ export default async function LocaleLayout({
       <div lang={locale} className="min-h-screen bg-background text-foreground">
         <Navbar locale={locale} />
         {children}
+        <Footer />
       </div>
     </NextIntlClientProvider>
   );

@@ -33,7 +33,7 @@ const SWIPE_THRESHOLD = 56;
 
 export function LuxuryHeroCarousel({
   heroSlides: heroSlides,
-  autoPlayMs = 6500,
+  autoPlayMs = 3000,
 }: LuxuryHeroCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);

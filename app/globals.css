@@ -49,6 +49,12 @@
 }
 
 :root {
+    --footer-dark: oklch(0.13 0.01 260);
+    --footer-light: oklch(0.97 0.01 95);
+    --footer-border: oklch(1 0 0 / 10%);
+    --footer-accent: oklch(0.3 0.018 250);
+    --footer-accent-dark: oklch(0.22 0.012 260);
+    --footer-input: oklch(0.2 0.012 260);
   --background: oklch(0.17 0.01 260);
   --foreground: oklch(0.94 0.01 95);
   --card: oklch(0.22 0.012 260);
@@ -84,6 +90,12 @@
 }
 
 .dark {
+    --footer-dark: oklch(0.13 0.01 260);
+    --footer-light: oklch(0.97 0.01 95);
+    --footer-border: oklch(1 0 0 / 10%);
+    --footer-accent: oklch(0.3 0.018 250);
+    --footer-accent-dark: oklch(0.22 0.012 260);
+    --footer-input: oklch(0.2 0.012 260);
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -130,6 +142,13 @@
 }
 
 @layer utilities {
+    .bg-footer-dark { background-color: var(--footer-dark); }
+    .text-footer-light { color: var(--footer-light); }
+    .border-footer-border { border-color: var(--footer-border); }
+    .bg-footer-accent { background-color: var(--footer-accent); }
+    .bg-footer-accent-dark { background-color: var(--footer-accent-dark); }
+    .bg-footer-input { background-color: var(--footer-input); }
+    .text-footer-accent { color: var(--footer-accent); }
   .hero-vignette {
     background:
       linear-gradient(90deg, rgba(8, 10, 14, 0.7) 0%, rgba(8, 10, 14, 0.28) 42%, rgba(8, 10, 14, 0.08) 62%, rgba(8, 10, 14, 0.58) 100%),

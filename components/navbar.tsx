@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { NavCart } from "@/components/cart/nav-cart";
@@ -13,10 +14,17 @@ export function Navbar({ locale }: NavbarProps) {
       <div className="flex w-full items-center justify-between px-6 py-4 sm:px-8 lg:px-10">
         <Link
           href={`/${locale}`}
-          className="text-lg font-semibold tracking-[0.08em] transition-opacity hover:opacity-80"
+          className="shrink-0 transition-opacity hover:opacity-80"
           aria-label="Go to homepage"
         >
-          BE@RBRICK
+          <Image
+            src="/logo_BB_white.svg"
+            alt="BE@RBRICK"
+            width={746}
+            height={159}
+            priority
+            className="h-7 w-auto invert sm:h-8"
+          />
         </Link>
         <div className="ml-auto flex items-center gap-3">
           <div>Merchandise</div>

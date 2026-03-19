@@ -26,7 +26,7 @@ export default async function ProductsPage() {
   }
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-6 px-6 py-12">
+    <main className="flex min-h-screen w-full flex-col gap-6 px-6 py-12">
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">{t("title")}</h1>
         <p className="text-muted-foreground">{t("description")}</p>
