@@ -42,12 +42,6 @@ export function WhatsOnSection({
             </h2>
             <p className="mt-3 text-base text-muted-foreground">{description}</p>
           </div>
-          <Link
-            href={viewAllHref}
-            className="inline-flex items-center rounded-full border border-white/12 bg-white/5 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-white/10"
-          >
-            {viewAllLabel}
-          </Link>
         </div>
 
         <div className="mt-8 grid gap-4 sm:mt-10 md:grid-cols-2 xl:grid-cols-3">
@@ -83,6 +77,15 @@ export function WhatsOnSection({
               </Link>
             </article>
           ))}
+        </div>
+
+        <div className="mt-10 flex justify-center">
+          <Link
+            href={viewAllHref}
+            className="inline-flex items-center rounded-full border border-white/12 bg-white/5 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-white/10"
+          >
+            {viewAllLabel}
+          </Link>
         </div>
       </div>
     </section>

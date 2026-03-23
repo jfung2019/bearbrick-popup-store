@@ -3,6 +3,9 @@ import { PromoMarquee } from "@/components/promo-marquee";
 import { LuxuryHeroCarousel } from "@/components/luxury-hero-carousel";
 import { WhatsOnSection } from "@/components/home/whats-on-section";
 import { getPromoMarqueeItems } from "@/lib/wordpress";
+import { FeaturedProducts, FeaturedProduct } from "@/components/home/featured-products";
+import { getProducts } from "@/lib/woocommerce";
+import ContactPage from "./contact/page";
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
@@ -90,6 +93,24 @@ export default async function HomePage({
     },
   ];
 
+  // Fetch featured products using WooCommerce's built-in 'featured' flag
+  let featuredProducts: FeaturedProduct[] = [];
+  try {
+    const wcProducts = await getProducts({ featured: true });
+    console.log("[HomePage] Fetched featured products:", wcProducts);
+    featuredProducts = wcProducts.map((p) => ({
+      id: String(p.id),
+      name: p.name,
+      desc: p.slug.replace(/-/g, ' '),
+      price: p.price ? `$${p.price}` : '',
+      size: p.attributes?.find((a: any) => a.name.toLowerCase().includes('size'))?.option || '',
+      image: p.images?.[0]?.src || '/images/placeholder.jpg',
+      href: `/products/${p.slug}`,
+    }));
+  } catch (e) {
+    // fallback to empty or static
+  }
+
   return (
     <main>
       <PromoMarquee items={marqueeItems} />
@@ -102,6 +123,13 @@ export default async function HomePage({
         viewAllHref={`/${locale}/products`}
         items={whatsOnItems}
       />
+      {/* Featured Products Section */}
+      <FeaturedProducts
+        products={featuredProducts}
+        viewAllHref={`/${locale}/products`}
+        viewAllLabel={t("FeaturedProducts.viewAll")}
+      />
+      <ContactPage/>
     </main>
   );
 }

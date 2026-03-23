@@ -38,7 +38,7 @@
       "kicker": "Now Happening",
       "title": "What's On",
       "description": "A quick look at the limited drops, previews, and collector moments happening right now.",
-      "viewAll": "View all products",
+      "viewAll": "See more",
       "items": {
         "dropWeekend": {
           "date": "Mar 22-24",
@@ -62,6 +62,9 @@
           "cta": "Explore member picks"
         }
       }
+    },
+    "FeaturedProducts": {
+      "viewAll": "See More"
     }
   },
   "Auth": {
@@ -109,5 +112,50 @@
     "paymentBody": "Airwallex payment integration will be mounted in this step.",
     "paymentDisabled": "Add at least one item to enable payment.",
     "airwallexPlaceholder": "TODO: Initialize Airwallex Elements / Drop-in and create payment intent on the server before confirming order."
+  },
+  "Footer": {
+    "contactUs": "Contact Us",
+    "subscribePlaceholder": "JOIN@VAULT.COM",
+    "subscribeButton": "SUBSCRIBE",
+    "siteMap": "Site Map",
+    "social": "Social Networks",
+    "socialLinks": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "rednote": "Rednote",
+      "douyin": "Douyin",
+      "linkedin": "LinkedIn"
+    },
+    "info": "Information",
+    "infoLinks": {
+      "faq": "FAQ",
+      "legal": "Legal notice",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use"
+    },
+    "address": "Shop G/F, 123 Bearbrick Street, Central, Hong Kong"
+  },
+  "Contact": {
+    "title": "Connect with us",
+    "subtitle": "Our curators are available for private consultations and acquisition inquiries.",
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "ALEXANDER VANCE",
+      "email": "Email Address",
+      "emailPlaceholder": "CURATOR@VAULT.COM",
+      "subject": "Subject",
+      "subjectPlaceholder": "Private Acquisition Inquiry",
+      "subjectOptions": {
+        "private": "Private Acquisition Inquiry",
+        "general": "General Inquiry",
+        "consultation": "Consultation Request",
+        "other": "Other"
+      },
+      "message": "Message",
+      "messagePlaceholder": "DESCRIBE YOUR INQUIRY...",
+      "submit": "SUBMIT INQUIRY",
+      "success": "Message sent!",
+      "error": "Failed to send. Please try again."
+    }
   }
 }
