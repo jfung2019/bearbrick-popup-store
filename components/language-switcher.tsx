@@ -22,7 +22,7 @@ export function LanguageSwitcher() {
       <button
         type="button"
         aria-label="Change language"
-        className="flex items-center justify-center h-9 w-9 rounded-md border border-input bg-background hover:bg-muted transition"
+        className="inline-flex size-9 items-center justify-center rounded-md border transition"
         tabIndex={0}
         onClick={() => {
           const menu = document.getElementById('locale-menu');

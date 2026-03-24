@@ -2,16 +2,38 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Instagram, Facebook, Rednote, Douyin } from './svg/socialIcons';
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
   const t = useTranslations('Footer');
+  const tContact = useTranslations('Contact');
   const logoRef = useRef<HTMLDivElement>(null);
+  const [contactStatus, setContactStatus] = useState<'idle' | 'sent' | 'error'>('idle');
+
+  async function handleContactSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setContactStatus('idle');
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: formData.get('name') as string,
+        email: formData.get('email') as string,
+        subject: 'Footer enquiry',
+        message: formData.get('message') as string,
+      }),
+    });
+    setContactStatus(res.ok ? 'sent' : 'error');
+    if (res.ok) form.reset();
+  }
 
   useEffect(() => {
     if (!logoRef.current) return;
@@ -47,7 +69,8 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="w-full bg-[#181818] text-footer-light pt-12 px-4 border-t border-footer-border overflow-hidden">
+    <footer className="w-full bg-[#181818] text-footer-light border-t border-footer-border overflow-hidden">
+      <div className="pt-12 px-4">
       <div className="mx-auto w-full flex flex-col md:flex-row md:items-start md:justify-between gap-10">
         {/* Left: Logo and copyright */}
         <div className="flex-1 min-w-55 flex flex-col gap-4 mb-8 md:mb-0">
@@ -67,9 +90,41 @@ export default function Footer() {
         <div className="flex-2 grid grid-cols-1 sm:grid-cols-3 gap-8 w-full">
           <div>
             <h3 className="uppercase text-xs font-bold tracking-widest text-footer-light mb-3">{t('contactUs')}</h3>
-            <ul className="space-y-1 text-sm">
-              <li>{t('address')}</li>
-            </ul>
+            <p className="text-sm mb-4">{t('address')}</p>
+            <form onSubmit={handleContactSubmit} className="flex flex-col gap-2">
+              <input
+                name="name"
+                type="text"
+                required
+                placeholder={tContact('form.namePlaceholder')}
+                className="w-full rounded-none px-3 py-2 bg-[#111] text-white text-xs border border-white/10 focus:ring-1 focus:ring-footer-accent placeholder:text-footer-light/50"
+              />
+              <input
+                name="email"
+                type="email"
+                required
+                placeholder={tContact('form.emailPlaceholder')}
+                className="w-full rounded-none px-3 py-2 bg-[#111] text-white text-xs border border-white/10 focus:ring-1 focus:ring-footer-accent placeholder:text-footer-light/50"
+              />
+              <textarea
+                name="message"
+                rows={3}
+                required
+                placeholder={tContact('form.messagePlaceholder')}
+                className="w-full rounded-none px-3 py-2 bg-[#111] text-white text-xs border border-white/10 focus:ring-1 focus:ring-footer-accent placeholder:text-footer-light/50 resize-none"
+              />
+              <button
+                type="submit"
+                className="w-full bg-[#FFD34E] text-black text-xs font-semibold tracking-widest py-2 rounded-none hover:bg-[#e6b800] transition"
+              >
+                {tContact('form.submit')}
+              </button>
+              {contactStatus !== 'idle' && (
+                <p className="text-xs text-footer-light/70">
+                  {contactStatus === 'sent' ? tContact('form.success') : tContact('form.error')}
+                </p>
+              )}
+            </form>
           </div>
           <div>
             <h3 className="uppercase text-xs font-bold tracking-widest text-footer-light mb-3">{t('social')}</h3>
@@ -118,6 +173,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+      </div>
       </div>
       {/* Bottom: Centered logo with animation */}
       <div ref={logoRef} className="w-full flex justify-center items-center py-16">

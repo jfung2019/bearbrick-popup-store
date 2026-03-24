@@ -5,7 +5,7 @@ import { WhatsOnSection } from "@/components/home/whats-on-section";
 import { getPromoMarqueeItems } from "@/lib/wordpress";
 import { FeaturedProducts, FeaturedProduct } from "@/components/home/featured-products";
 import { getProducts } from "@/lib/woocommerce";
-import ContactPage from "./contact/page";
+
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
@@ -103,7 +103,7 @@ export default async function HomePage({
       name: p.name,
       desc: p.slug.replace(/-/g, ' '),
       price: p.price ? `$${p.price}` : '',
-      size: p.attributes?.find((a: any) => a.name.toLowerCase().includes('size'))?.option || '',
+      size: '',
       image: p.images?.[0]?.src || '/images/placeholder.jpg',
       href: `/products/${p.slug}`,
     }));
@@ -129,7 +129,6 @@ export default async function HomePage({
         viewAllHref={`/${locale}/products`}
         viewAllLabel={t("FeaturedProducts.viewAll")}
       />
-      <ContactPage/>
     </main>
   );
 }
