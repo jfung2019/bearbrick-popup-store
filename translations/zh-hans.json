@@ -62,6 +62,9 @@
           "cta": "探索会员精选"
         }
       }
+    },
+    "FeaturedProducts": {
+      "viewAll": "查看更多"
     }
   },
   "Auth": {
@@ -109,5 +112,55 @@
     "paymentBody": "此步骤将接入 Airwallex 付款流程。",
     "paymentDisabled": "请先加入至少一件商品后再付款。",
     "airwallexPlaceholder": "TODO：初始化 Airwallex Elements / Drop-in，并在服务端创建 payment intent 后确认订单。"
+  },
+  "Footer": {
+    "contactUs": "联系我们",
+    "subscribePlaceholder": "JOIN@VAULT.COM",
+    "subscribeButton": "订阅",
+    "siteMap": "网站地图",
+    "social": "社交媒体",
+    "socialLinks": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "rednote": "小红书",
+      "douyin": "抖音",
+      "linkedin": "领英"
+    },
+    "info": "信息",
+    "infoLinks": {
+      "faq": "常见问题",
+      "legal": "法律声明",
+      "privacy": "隐私政策",
+      "terms": "使用条款"
+    },
+    "address": "Shop G/F, 123 Bearbrick Street, Central, Hong Kong"
+  },
+  "Contact": {
+    "title": "联系我们",
+    "subtitle": "我们的策展团队随时欢迎私人咨询及藏品购买垂询。",
+    "form": {
+      "name": "姓名",
+      "namePlaceholder": "张 伟",
+      "email": "电子邮箱",
+      "emailPlaceholder": "CURATOR@VAULT.COM",
+      "subject": "主题",
+      "subjectPlaceholder": "藏品购买咨询",
+      "subjectOptions": {
+        "private": "藏品购买咨询",
+        "general": "一般咨询",
+        "consultation": "咨询请求",
+        "other": "其他"
+      },
+      "message": "留言",
+      "messagePlaceholder": "请描述您的咨询内容...",
+      "submit": "提交咨询",
+      "success": "消息已发送！",
+      "error": "发送失败，请重试。"
+    }
+  },
+  "Navbar": {
+    "merchandise": "商品",
+    "whatsOn": "最新活动",
+    "aboutUs": "关于我们"
   }
 }

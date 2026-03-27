@@ -1,14 +1,21 @@
 "use client";
 
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Globe } from "lucide-react";
 
 export function LanguageSwitcher() {
   const locale = useLocale();
-  const t = useTranslations("languages");
   const router = useRouter();
+
+  const nativeNames: Record<string, string> = {
+    en: "English",
+    "zh-hant": "繁體中文",
+    "zh-hans": "简体中文",
+    ja: "日本語",
+    ko: "한국어",
+  };
   const pathname = usePathname();
 
   const switchLocale = (newLocale: string) => {
@@ -46,7 +53,7 @@ export function LanguageSwitcher() {
                 if (menu) menu.classList.add('hidden');
               }}
             >
-              {t(loc)}
+              {nativeNames[loc] ?? loc}
             </button>
           </li>
         ))}

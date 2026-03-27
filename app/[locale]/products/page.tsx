@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
-import { getProducts } from "@/lib/woocommerce";
+import { getProductsLocalized } from "@/lib/woocommerce";
 import { AddToCartButton } from "@/components/cart/add-to-cart-button";
 import { APP_CONFIG } from "@/lib/config";
 
@@ -9,16 +9,21 @@ function parsePrice(value: string) {
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
-export default async function ProductsPage() {
+type ProductsPageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function ProductsPage({ params }: ProductsPageProps) {
+  const { locale } = await params;
   const t = await getTranslations("Products");
 
-  let products = [] as Awaited<ReturnType<typeof getProducts>>;
+  let products = [] as Awaited<ReturnType<typeof getProductsLocalized>>;
   let fetchError: string | null = null;
 
   try {
-    products = await getProducts({ 
-      per_page: APP_CONFIG.products.perPage, 
-      status: "publish" 
+    products = await getProductsLocalized(locale, {
+      per_page: APP_CONFIG.products.perPage,
+      status: "publish",
     });
   } catch (error) {
     fetchError = error instanceof Error ? error.message : "Failed to fetch products";
@@ -48,6 +53,7 @@ export default async function ProductsPage() {
         {products.map((product) => {
           const firstImage = product.images[0]?.src;
           const displayPrice = parsePrice(product.price || product.regular_price);
+          const displayName = product.name;
 
           return (
             <article key={product.id} className="rounded-lg border p-4">
@@ -55,7 +61,7 @@ export default async function ProductsPage() {
                 {firstImage ? (
                   <Image
                     src={firstImage}
-                    alt={product.name}
+                    alt={displayName}
                     fill
                     className="object-cover"
                     sizes={APP_CONFIG.products.defaultImageSize}
@@ -67,7 +73,7 @@ export default async function ProductsPage() {
                 )}
               </div>
 
-              <h2 className="line-clamp-2 text-base font-medium">{product.name}</h2>
+              <h2 className="line-clamp-2 text-base font-medium">{displayName}</h2>
               <p className="mt-1 text-sm text-muted-foreground">
                 {t("price", { value: displayPrice.toFixed(2) })}
               </p>

@@ -30,7 +30,7 @@ export function WhatsOnSection({
   items,
 }: WhatsOnSectionProps) {
   return (
-    <section className="bg-background py-16 sm:py-20 lg:py-24">
+    <section id="whats-on" className="bg-background py-16 sm:py-20 lg:py-24">
       <div className="w-full px-6 sm:px-8 lg:px-10">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-3xl">

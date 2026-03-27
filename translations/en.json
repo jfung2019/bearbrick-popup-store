@@ -157,5 +157,10 @@
       "success": "Message sent!",
       "error": "Failed to send. Please try again."
     }
+  },
+  "Navbar": {
+    "merchandise": "Merchandise",
+    "whatsOn": "What's On",
+    "aboutUs": "About Us"
   }
 }

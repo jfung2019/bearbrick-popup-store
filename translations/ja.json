@@ -62,6 +62,9 @@
           "cta": "会員向け商品を見る"
         }
       }
+    },
+    "FeaturedProducts": {
+      "viewAll": "もっと見る"
     }
   },
   "Auth": {
@@ -109,5 +112,55 @@
     "paymentBody": "このステップで Airwallex 決済を組み込みます。",
     "paymentDisabled": "支払いを有効にするには、商品を 1 点以上追加してください。",
     "airwallexPlaceholder": "TODO: Airwallex Elements / Drop-in を初期化し、サーバー側で payment intent を作成してから注文を確定します。"
+  },
+  "Footer": {
+    "contactUs": "お問い合わせ",
+    "subscribePlaceholder": "JOIN@VAULT.COM",
+    "subscribeButton": "登録する",
+    "siteMap": "サイトマップ",
+    "social": "ソーシャルネットワーク",
+    "socialLinks": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "rednote": "小紅書",
+      "douyin": "抖音",
+      "linkedin": "LinkedIn"
+    },
+    "info": "インフォメーション",
+    "infoLinks": {
+      "faq": "よくある質問",
+      "legal": "法的通知",
+      "privacy": "プライバシーポリシー",
+      "terms": "利用規約"
+    },
+    "address": "Shop G/F, 123 Bearbrick Street, Central, Hong Kong"
+  },
+  "Contact": {
+    "title": "お問い合わせ",
+    "subtitle": "プライベートコンサルテーションやコレクション購入のご相談を承っております。",
+    "form": {
+      "name": "氏名",
+      "namePlaceholder": "山田 太郎",
+      "email": "メールアドレス",
+      "emailPlaceholder": "CURATOR@VAULT.COM",
+      "subject": "件名",
+      "subjectPlaceholder": "コレクション購入に関するお問い合わせ",
+      "subjectOptions": {
+        "private": "コレクション購入に関するお問い合わせ",
+        "general": "一般的なお問い合わせ",
+        "consultation": "コンサルテーション依頼",
+        "other": "その他"
+      },
+      "message": "メッセージ",
+      "messagePlaceholder": "メッセージ内容をご記入ください...",
+      "submit": "送信する",
+      "success": "送信が完了しました！",
+      "error": "送信に失敗しました。もう一度お試しください。"
+    }
+  },
+  "Navbar": {
+    "merchandise": "商品",
+    "whatsOn": "イベント",
+    "aboutUs": "私たちについて"
   }
 }

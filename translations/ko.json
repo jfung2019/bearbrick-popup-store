@@ -62,6 +62,9 @@
           "cta": "멤버 픽 보기"
         }
       }
+    },
+    "FeaturedProducts": {
+      "viewAll": "더보기"
     }
   },
   "Auth": {
@@ -109,5 +112,55 @@
     "paymentBody": "이 단계에서 Airwallex 결제를 연동합니다.",
     "paymentDisabled": "결제를 활성화하려면 상품을 1개 이상 추가하세요.",
     "airwallexPlaceholder": "TODO: Airwallex Elements / Drop-in을 초기화하고, 서버에서 payment intent를 생성한 뒤 주문을 확정합니다."
+  },
+  "Footer": {
+    "contactUs": "문의하기",
+    "subscribePlaceholder": "JOIN@VAULT.COM",
+    "subscribeButton": "구독하기",
+    "siteMap": "사이트맵",
+    "social": "소셜 네트워크",
+    "socialLinks": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "rednote": "샤오홍슈",
+      "douyin": "도우인",
+      "linkedin": "LinkedIn"
+    },
+    "info": "정보",
+    "infoLinks": {
+      "faq": "자주 묻는 질문",
+      "legal": "법적 고지",
+      "privacy": "개인정보 처리방침",
+      "terms": "이용 약관"
+    },
+    "address": "Shop G/F, 123 Bearbrick Street, Central, Hong Kong"
+  },
+  "Contact": {
+    "title": "문의하기",
+    "subtitle": "프라이빗 컨설팅 및 작품 구매 문의는 언제든지 환영합니다.",
+    "form": {
+      "name": "이름",
+      "namePlaceholder": "홍 길동",
+      "email": "이메일 주소",
+      "emailPlaceholder": "CURATOR@VAULT.COM",
+      "subject": "제목",
+      "subjectPlaceholder": "작품 구매 문의",
+      "subjectOptions": {
+        "private": "작품 구매 문의",
+        "general": "일반 문의",
+        "consultation": "컨설팅 요청",
+        "other": "기타"
+      },
+      "message": "메시지",
+      "messagePlaceholder": "문의 내용을 입력해 주세요...",
+      "submit": "문의 보내기",
+      "success": "메시지가 전송되었습니다!",
+      "error": "전송에 실패했습니다. 다시 시도해 주세요."
+    }
+  },
+  "Navbar": {
+    "merchandise": "상품",
+    "whatsOn": "이벤트",
+    "aboutUs": "소개"
   }
 }

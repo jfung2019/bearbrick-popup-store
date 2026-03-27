@@ -4,7 +4,7 @@ import { LuxuryHeroCarousel } from "@/components/luxury-hero-carousel";
 import { WhatsOnSection } from "@/components/home/whats-on-section";
 import { getPromoMarqueeItems } from "@/lib/wordpress";
 import { FeaturedProducts, FeaturedProduct } from "@/components/home/featured-products";
-import { getProducts } from "@/lib/woocommerce";
+import { getProductsLocalized } from "@/lib/woocommerce";
 
 
 type HomePageProps = {
@@ -96,7 +96,7 @@ export default async function HomePage({
   // Fetch featured products using WooCommerce's built-in 'featured' flag
   let featuredProducts: FeaturedProduct[] = [];
   try {
-    const wcProducts = await getProducts({ featured: true });
+    const wcProducts = await getProductsLocalized(locale, { featured: true });
     console.log("[HomePage] Fetched featured products:", wcProducts);
     featuredProducts = wcProducts.map((p) => ({
       id: String(p.id),
