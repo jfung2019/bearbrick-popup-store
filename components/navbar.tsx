@@ -20,12 +20,12 @@ export function Navbar({ locale }: NavbarProps) {
           aria-label="Go to homepage"
         >
           <Image
-            src="/logo_BB_white.svg"
+            src="/bearbrick_logo_sample.png"
             alt="BE@RBRICK"
             width={746}
             height={159}
             priority
-            className="h-7 w-auto invert sm:h-8"
+            className="h-7 w-auto sm:h-8"
           />
         </Link>
         <div className="ml-auto flex items-center gap-3">

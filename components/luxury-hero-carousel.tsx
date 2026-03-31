@@ -26,6 +26,7 @@ type HeroSlide = {
 
 type LuxuryHeroCarouselProps = {
   heroSlides: HeroSlide[];
+  locale: string;
   autoPlayMs?: number;
 };
 
@@ -33,6 +34,7 @@ const SWIPE_THRESHOLD = 56;
 
 export function LuxuryHeroCarousel({
   heroSlides: heroSlides,
+  locale: locale,
   autoPlayMs = 3000,
 }: LuxuryHeroCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -289,7 +291,8 @@ export function LuxuryHeroCarousel({
                   </p>
                   <div className="mt-8 flex flex-wrap items-center gap-4">
                     <Link
-                      href={slide.href}
+                      // update later to required href from slide data
+                      href={`/${locale}/products`}
                       className="pointer-events-auto inline-flex items-center rounded-full bg-stone-100 px-6 py-3 text-sm font-semibold text-stone-950 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white"
                     >
                       {slide.ctaLabel}

@@ -2,9 +2,10 @@ import { getTranslations } from "next-intl/server";
 import { PromoMarquee } from "@/components/promo-marquee";
 import { LuxuryHeroCarousel } from "@/components/luxury-hero-carousel";
 import { WhatsOnSection } from "@/components/home/whats-on-section";
-import { getPromoMarqueeItems } from "@/lib/wordpress";
+import { getPromoMarqueeItems, getBannerHeroSlides, getPostsBySlug } from "@/lib/wordpress";
 import { FeaturedProducts, FeaturedProduct } from "@/components/home/featured-products";
-import { getProductsLocalized } from "@/lib/woocommerce";
+import { getProducts } from "@/lib/woocommerce-api";
+import ContactPage from "./contact/page";
 
 
 type HomePageProps = {
@@ -19,9 +20,9 @@ export default async function HomePage({
   const fallbackMarqueeItems = [
     "FALLBACK DATA"
   ];
-  const marqueeItems = await getPromoMarqueeItems(fallbackMarqueeItems);
+  const marqueeItems = await getPromoMarqueeItems(fallbackMarqueeItems, { categorySlug: "promotional_headline" });
 
-  const heroSlides = [
+  const fallbackHeroSlides = [
     {
       id: "atelier",
       eyebrow: t("hero.slides.atelier.eyebrow"),
@@ -56,6 +57,8 @@ export default async function HomePage({
       accent: "bg-[#f3ead5]",
     },
   ];
+
+  const heroSlides = await getBannerHeroSlides(fallbackHeroSlides, { categorySlug: "banner" });
 
   const whatsOnItems = [
     {
@@ -93,28 +96,37 @@ export default async function HomePage({
     },
   ];
 
+  const test = await getPostsBySlug("banner");
+  console.log("Test fetch posts by slug 'banner':", test);
+  const test2 = await getPostsBySlug("promotional_headline");
+  console.log("Test2 fetch posts by slug 'promotional_headline':", test2);
+
   // Fetch featured products using WooCommerce's built-in 'featured' flag
-  let featuredProducts: FeaturedProduct[] = [];
-  try {
-    const wcProducts = await getProductsLocalized(locale, { featured: true });
-    console.log("[HomePage] Fetched featured products:", wcProducts);
-    featuredProducts = wcProducts.map((p) => ({
-      id: String(p.id),
-      name: p.name,
-      desc: p.slug.replace(/-/g, ' '),
-      price: p.price ? `$${p.price}` : '',
-      size: '',
-      image: p.images?.[0]?.src || '/images/placeholder.jpg',
-      href: `/products/${p.slug}`,
-    }));
-  } catch (e) {
-    // fallback to empty or static
+  async function fetchFeaturedProducts(): Promise<FeaturedProduct[]> {
+    try {
+      const wcProducts = await getProducts({ featured: true });
+      return wcProducts.map((p: any) => ({
+        id: String(p.id),
+        name: p.name,
+        desc: p.slug.replace(/-/g, ' '),
+        price: p.price ? `$${p.price}` : '',
+        size: '',
+        image: p.images?.[0]?.src || '/images/placeholder.jpg',
+        href: `/products/${p.slug}`,
+      }));
+    } catch (e) {
+      // fallback to empty or static
+      return [];
+    }
   }
+
+  // In your HomePage function:
+  const featuredProducts = await fetchFeaturedProducts();
 
   return (
     <main>
       <PromoMarquee items={marqueeItems} />
-      <LuxuryHeroCarousel heroSlides={heroSlides} />
+      <LuxuryHeroCarousel heroSlides={heroSlides} locale={locale} />
       <WhatsOnSection
         kicker={t("whatsOn.kicker")}
         title={t("whatsOn.title")}
@@ -129,6 +141,7 @@ export default async function HomePage({
         viewAllHref={`/${locale}/products`}
         viewAllLabel={t("FeaturedProducts.viewAll")}
       />
+      <ContactPage />
     </main>
   );
 }

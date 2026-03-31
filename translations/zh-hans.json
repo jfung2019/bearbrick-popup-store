@@ -1,10 +1,10 @@
 {
   "languages": {
-    "en": "英文",
-    "zh-hant": "繁体中文",
+    "en": "English",
+    "zh-hant": "繁體中文",
     "zh-hans": "简体中文",
-    "ja": "日文",
-    "ko": "韩文"
+    "ja": "日本語",
+    "ko": "한국어"
   },
   "Home": {
     "title": "BE@RBRICK 快闪店",
@@ -95,7 +95,31 @@
     "price": "HK${value}",
     "empty": "目前没有可显示的商品。",
     "error": "无法加载商品。请检查 WooCommerce 环境变量与密钥设置。",
-    "imageFallback": "无图片"
+    "imageFallback": "无图片",
+    "filter": {
+      "title": "筛选",
+      "category": {
+        "label": "类别",
+        "all": "全部",
+        "100": "Bearbrick 100%",
+        "400": "Bearbrick 400%",
+        "1000": "Bearbrick 1000%"
+      },
+      "price": {
+        "label": "价格区间",
+        "min": "最低",
+        "max": "最高"
+      },
+      "sort": {
+        "label": "排序方式",
+        "relevance": "相关性",
+        "priceLow": "价格从低到高",
+        "priceHigh": "价格从高到低",
+        "nameAZ": "名称: A-Z",
+        "nameZA": "名称: Z-A"
+      },
+      "apply": "应用"
+    }
   },
   "Checkout": {
     "title": "结账",

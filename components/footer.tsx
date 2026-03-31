@@ -91,40 +91,6 @@ export default function Footer() {
           <div>
             <h3 className="uppercase text-xs font-bold tracking-widest text-footer-light mb-3">{t('contactUs')}</h3>
             <p className="text-sm mb-4">{t('address')}</p>
-            <form onSubmit={handleContactSubmit} className="flex flex-col gap-2">
-              <input
-                name="name"
-                type="text"
-                required
-                placeholder={tContact('form.namePlaceholder')}
-                className="w-full rounded-none px-3 py-2 bg-[#111] text-white text-xs border border-white/10 focus:ring-1 focus:ring-footer-accent placeholder:text-footer-light/50"
-              />
-              <input
-                name="email"
-                type="email"
-                required
-                placeholder={tContact('form.emailPlaceholder')}
-                className="w-full rounded-none px-3 py-2 bg-[#111] text-white text-xs border border-white/10 focus:ring-1 focus:ring-footer-accent placeholder:text-footer-light/50"
-              />
-              <textarea
-                name="message"
-                rows={3}
-                required
-                placeholder={tContact('form.messagePlaceholder')}
-                className="w-full rounded-none px-3 py-2 bg-[#111] text-white text-xs border border-white/10 focus:ring-1 focus:ring-footer-accent placeholder:text-footer-light/50 resize-none"
-              />
-              <button
-                type="submit"
-                className="w-full bg-[#FFD34E] text-black text-xs font-semibold tracking-widest py-2 rounded-none hover:bg-[#e6b800] transition"
-              >
-                {tContact('form.submit')}
-              </button>
-              {contactStatus !== 'idle' && (
-                <p className="text-xs text-footer-light/70">
-                  {contactStatus === 'sent' ? tContact('form.success') : tContact('form.error')}
-                </p>
-              )}
-            </form>
           </div>
           <div>
             <h3 className="uppercase text-xs font-bold tracking-widest text-footer-light mb-3">{t('social')}</h3>
