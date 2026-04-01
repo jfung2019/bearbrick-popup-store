@@ -2,6 +2,12 @@
 import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api';
 
 // Types for WooCommerce products
+export type WooCommerceProductCategory = {
+  id: number;
+  name: string;
+  slug: string;
+};
+
 export type WooCommerceProduct = {
   id: number;
   name: string;
@@ -11,6 +17,7 @@ export type WooCommerceProduct = {
   sale_price: string;
   images: Array<{ id: number; src: string; alt: string }>;
   stock_status: string;
+  categories: WooCommerceProductCategory[];
 };
 
 const api = new WooCommerceRestApi({

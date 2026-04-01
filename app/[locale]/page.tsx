@@ -96,10 +96,11 @@ export default async function HomePage({
     },
   ];
 
-  const test = await getPostsBySlug("banner");
-  console.log("Test fetch posts by slug 'banner':", test);
-  const test2 = await getPostsBySlug("promotional_headline");
-  console.log("Test2 fetch posts by slug 'promotional_headline':", test2);
+  // debug
+  // const test = await getPostsBySlug("banner");
+  // console.log("Test fetch posts by slug 'banner':", test);
+  // const test2 = await getPostsBySlug("promotional_headline");
+  // console.log("Test2 fetch posts by slug 'promotional_headline':", test2);
 
   // Fetch featured products using WooCommerce's built-in 'featured' flag
   async function fetchFeaturedProducts(): Promise<FeaturedProduct[]> {

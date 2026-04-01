@@ -12,20 +12,21 @@ import {
 } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { gsap } from "gsap";
+import { WPBannerHeroSlide } from "@/lib/wordpress";
 
-type HeroSlide = {
-  id: string;
-  eyebrow: string;
-  title: string;
-  description: string;
-  ctaLabel: string;
-  href: string;
-  imageSrc: string;
-  accent: string;
-};
+// type HeroSlide = {
+//   id: string;
+//   eyebrow: string;
+//   title: string;
+//   description: string;
+//   ctaLabel: string;
+//   href: string;
+//   imageSrc: string;
+//   accent: string;
+// };
 
 type LuxuryHeroCarouselProps = {
-  heroSlides: HeroSlide[];
+  heroSlides: WPBannerHeroSlide[];
   locale: string;
   autoPlayMs?: number;
 };
@@ -281,7 +282,7 @@ export function LuxuryHeroCarousel({
                 >
                   <div className="mb-4 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/8 px-4 py-2 text-[0.68rem] font-medium tracking-[0.36em] text-white/82 uppercase backdrop-blur-md">
                     <span className={`h-2 w-2 rounded-full ${slide.accent}`} />
-                    {slide.eyebrow}
+                    {'slide.eyebrow'}
                   </div>
                   <h1 className="max-w-4xl text-4xl font-semibold leading-[0.95] tracking-[-0.04em] text-white drop-shadow-[0_20px_80px_rgba(0,0,0,0.32)] sm:text-6xl lg:text-7xl xl:text-[5.8rem]">
                     {slide.title}
@@ -295,7 +296,7 @@ export function LuxuryHeroCarousel({
                       href={`/${locale}/products`}
                       className="pointer-events-auto inline-flex items-center rounded-full bg-stone-100 px-6 py-3 text-sm font-semibold text-stone-950 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white"
                     >
-                      {slide.ctaLabel}
+                      {"hi cta label"}
                     </Link>
                     <div className="pointer-events-none inline-flex items-center gap-3 text-sm text-white/66">
                       <span className="h-px w-12 bg-white/26" />

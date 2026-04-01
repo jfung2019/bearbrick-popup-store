@@ -94,8 +94,8 @@ export function FeaturedProducts({
                                     <button className="absolute top-2 right-2 bg-white/80 rounded-full p-2 shadow hover:bg-white">
                                         <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M5 15l7-7 7 7" /></svg>
                                     </button>
-                                    <button className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/90 text-white rounded-full px-6 py-2 text-base font-medium shadow hover:bg-black transition-colors">Buy now</button>
-                                    <span className="absolute bottom-3 right-3 bg-white/90 rounded-full px-4 py-2 text-sm font-semibold text-black shadow">{product.price}</span>
+                                    {/* <button className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/90 text-white rounded-full px-6 py-2 text-base font-medium shadow hover:bg-black transition-colors">Buy now</button> */}
+                                    {/* <span className="absolute bottom-3 right-3 bg-white/90 rounded-full px-4 py-2 text-sm font-semibold text-black shadow">{product.price}</span> */}
                                 </div>
                                 <div className="flex-1 flex flex-col justify-between">
                                     <div>
