@@ -2,15 +2,13 @@
 
 import { useState, useMemo } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { WooCommerceProduct } from "@/lib/woocommerce-api";
 import { AddToCartButton } from "@/components/cart/add-to-cart-button";
 import { APP_CONFIG } from "@/lib/config";
-
-function parsePrice(value: string) {
-  const parsed = Number.parseFloat(value);
-  return Number.isFinite(parsed) ? parsed : 0;
-}
+import { parsePrice } from "@/lib/utils";
 
 const CATEGORY_VALUES = ["all", "100", "400", "1000"] as const;
 type CategoryValue = (typeof CATEGORY_VALUES)[number];
@@ -25,6 +23,7 @@ type Props = {
 export function ProductsPage({ initialProducts, fetchError }: Props) {
   const t = useTranslations("Products");
   const tFilter = useTranslations("Products.filter");
+  const locale = useLocale();
 
   // Pending filter state (updated as user interacts)
   const [category, setCategory] = useState<CategoryValue>("all");
@@ -213,26 +212,28 @@ export function ProductsPage({ initialProducts, fetchError }: Props) {
                 key={product.id}
                 className="rounded-lg border p-3 bg-zinc-900 flex flex-col"
               >
-                <div className="relative mb-3 aspect-square overflow-hidden rounded-md bg-muted">
-                  {firstImage ? (
-                    <Image
-                      src={firstImage}
-                      alt={displayName}
-                      fill
-                      className="object-cover"
-                      sizes={APP_CONFIG.products.defaultImageSize}
-                    />
-                  ) : (
-                    <div className="flex h-full items-center justify-center text-xs text-muted-foreground">
-                      {t("imageFallback")}
-                    </div>
-                  )}
-                </div>
+                <Link href={`/${locale}/products/${product.slug}`} className="block">
+                  <div className="relative mb-3 aspect-square overflow-hidden rounded-md bg-muted">
+                    {firstImage ? (
+                      <Image
+                        src={firstImage}
+                        alt={displayName}
+                        fill
+                        className="object-cover"
+                        sizes={APP_CONFIG.products.defaultImageSize}
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center text-xs text-muted-foreground">
+                        {t("imageFallback")}
+                      </div>
+                    )}
+                  </div>
 
-                <h2 className="line-clamp-2 text-base font-medium">{displayName}</h2>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {t("price", { value: displayPrice.toFixed(2) })}
-                </p>
+                  <h2 className="line-clamp-2 text-base font-medium">{displayName}</h2>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {t("price", { value: displayPrice.toFixed(2) })}
+                  </p>
+                </Link>
 
                 <div className="mt-auto pt-4">
                   <AddToCartButton

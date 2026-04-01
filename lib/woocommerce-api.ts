@@ -15,6 +15,8 @@ export type WooCommerceProduct = {
   price: string;
   regular_price: string;
   sale_price: string;
+  description: string;
+  short_description: string;
   images: Array<{ id: number; src: string; alt: string }>;
   stock_status: string;
   categories: WooCommerceProductCategory[];
@@ -39,4 +41,9 @@ export async function getProducts(params = {}) {
       'WooCommerce API error: ' + (error.response?.data?.message || error.message)
     );
   }
+}
+
+export async function getProductBySlug(slug: string) {
+  const products = await getProducts({ slug, status: 'publish' });
+  return products[0] ?? null;
 }
