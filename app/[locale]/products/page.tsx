@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { getProducts } from "@/lib/woocommerce-api";
+import { getProducts } from "@/server/woocommerce";
 import { ProductsPage as Product } from "@/components/products/products-page";
 import { APP_CONFIG } from "@/lib/config";
 

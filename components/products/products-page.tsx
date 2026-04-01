@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
-import { WooCommerceProduct } from "@/lib/woocommerce-api";
+import { WooCommerceProduct } from "@/server/woocommerce";
 import { AddToCartButton } from "@/components/cart/add-to-cart-button";
 import { APP_CONFIG } from "@/lib/config";
 import { parsePrice } from "@/lib/utils";

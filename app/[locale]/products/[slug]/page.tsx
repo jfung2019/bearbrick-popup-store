@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { AddToCartButton } from "@/components/cart/add-to-cart-button";
 import { ProductGallery } from "@/components/products/product-gallery";
-import { getProductBySlug } from "@/lib/woocommerce-api";
+import { getProductBySlug } from "@/server/woocommerce";
 import { parsePrice, stripHtmlTags } from "@/lib/utils";
 
 type ProductDetailPageProps = {

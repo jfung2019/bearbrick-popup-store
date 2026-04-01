@@ -4,7 +4,7 @@ import { LuxuryHeroCarousel } from "@/components/luxury-hero-carousel";
 import { WhatsOnSection } from "@/components/home/whats-on-section";
 import { getPromoMarqueeItems, getBannerHeroSlides, getPostsBySlug } from "@/lib/wordpress";
 import { FeaturedProducts, FeaturedProduct } from "@/components/home/featured-products";
-import { getProducts } from "@/lib/woocommerce-api";
+import { getProducts } from "@/server/woocommerce";
 import ContactPage from "./contact/page";
 
 
