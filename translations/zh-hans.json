@@ -163,8 +163,10 @@
     "title": "联系我们",
     "subtitle": "我们的策展团队随时欢迎私人咨询及藏品购买垂询。",
     "form": {
-      "name": "姓名",
-      "namePlaceholder": "张 伟",
+      "firstName": "名字",
+      "firstNamePlaceholder": "伟",
+      "lastName": "姓氏",
+      "lastNamePlaceholder": "张",
       "email": "电子邮箱",
       "emailPlaceholder": "CURATOR@VAULT.COM",
       "subject": "主题",

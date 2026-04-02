@@ -163,8 +163,10 @@
     "title": "Connect with us",
     "subtitle": "Our curators are available for private consultations and acquisition inquiries.",
     "form": {
-      "name": "Full Name",
-      "namePlaceholder": "ALEXANDER VANCE",
+      "firstName": "First Name",
+      "firstNamePlaceholder": "ALEXANDER",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "VANCE",
       "email": "Email Address",
       "emailPlaceholder": "CURATOR@VAULT.COM",
       "subject": "Subject",

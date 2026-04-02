@@ -163,8 +163,10 @@
     "title": "お問い合わせ",
     "subtitle": "プライベートコンサルテーションやコレクション購入のご相談を承っております。",
     "form": {
-      "name": "氏名",
-      "namePlaceholder": "山田 太郎",
+      "firstName": "名",
+      "firstNamePlaceholder": "太郎",
+      "lastName": "姓",
+      "lastNamePlaceholder": "山田",
       "email": "メールアドレス",
       "emailPlaceholder": "CURATOR@VAULT.COM",
       "subject": "件名",

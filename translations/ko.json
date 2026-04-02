@@ -163,8 +163,10 @@
     "title": "문의하기",
     "subtitle": "프라이빗 컨설팅 및 작품 구매 문의는 언제든지 환영합니다.",
     "form": {
-      "name": "이름",
-      "namePlaceholder": "홍 길동",
+      "firstName": "이름",
+      "firstNamePlaceholder": "길동",
+      "lastName": "성",
+      "lastNamePlaceholder": "홍",
       "email": "이메일 주소",
       "emailPlaceholder": "CURATOR@VAULT.COM",
       "subject": "제목",

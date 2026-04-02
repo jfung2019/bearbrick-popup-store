@@ -163,8 +163,10 @@
     "title": "聯絡我們",
     "subtitle": "我們的策展團隊隨時歡迎私人諮詢及藏品購買洽詢。",
     "form": {
-      "name": "姓名",
-      "namePlaceholder": "張 偉",
+      "firstName": "名字",
+      "firstNamePlaceholder": "偉",
+      "lastName": "姓氏",
+      "lastNamePlaceholder": "張",
       "email": "電子郵件",
       "emailPlaceholder": "CURATOR@VAULT.COM",
       "subject": "主旨",
