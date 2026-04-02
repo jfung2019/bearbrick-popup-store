@@ -44,7 +44,7 @@ export function ProductGallery({ images, productName }: ProductGalleryProps) {
         <div className="grid grid-cols-4 gap-2">
           {images.map((image, index) => (
             <button
-              key={image.id || index}
+              key={image.id + "-" + index}
               type="button"
               onClick={() => setSelectedIndex(index)}
               className={`relative aspect-square overflow-hidden rounded border ${
