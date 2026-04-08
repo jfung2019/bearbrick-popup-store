@@ -39,6 +39,10 @@
       "title": "What's On",
       "description": "A quick look at the limited drops, previews, and collector moments happening right now.",
       "viewAll": "See more",
+      "newsTag": "News",
+      "readMore": "Read more",
+      "empty": "No news posts available yet.",
+      "error": "Unable to load news posts right now.",
       "items": {
         "dropWeekend": {
           "date": "Mar 22-24",
@@ -93,6 +97,12 @@
     "description": "First scaffolded listing page powered by WooCommerce API.",
     "addToCart": "Add to cart",
     "price": "HK${value}",
+    "stock": {
+      "label": "Stock",
+      "inStock": "In stock",
+      "outOfStock": "Out of stock",
+      "onBackorder": "On backorder"
+    },
     "empty": "No products available yet.",
     "error": "Unable to load products. Check WooCommerce environment variables and credentials.",
     "imageFallback": "No image",

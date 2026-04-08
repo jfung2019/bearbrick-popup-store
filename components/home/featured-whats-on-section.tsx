@@ -12,25 +12,25 @@ type WhatsOnItem = {
   imageSrc: string;
 };
 
-type WhatsOnSectionProps = {
+type FeaturedWhatsOnSectionProps = {
   kicker: string;
   title: string;
   description: string;
-  viewAllLabel: string;
-  viewAllHref: string;
+  viewAllLabel?: string;
+  viewAllHref?: string;
   items: WhatsOnItem[];
 };
 
-export function WhatsOnSection({
+export function FeaturedWhatsOnSection({
   kicker,
   title,
   description,
   viewAllLabel,
   viewAllHref,
   items,
-}: WhatsOnSectionProps) {
+}: FeaturedWhatsOnSectionProps) {
   return (
-    <section id="whats-on" className="bg-background py-16 sm:py-20 lg:py-24">
+    <section id="whats-on" className="bg-background py-16 sm:py-20 lg:pt-24">
       <div className="w-full px-6 sm:px-8 lg:px-10">
         {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between border-b border-white/10 pb-6">
@@ -42,13 +42,15 @@ export function WhatsOnSection({
               {description}
             </p>
           </div>
-          <Link
-            href={viewAllHref}
-            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-medium tracking-wide text-amber-500 uppercase hover:text-amber-400 transition-colors"
-          >
-            {viewAllLabel}
-            <span aria-hidden="true">&rarr;</span>
-          </Link>
+          {viewAllLabel && viewAllHref ? (
+            <Link
+              href={viewAllHref}
+              className="inline-flex shrink-0 items-center gap-1.5 text-sm font-medium tracking-wide text-amber-500 uppercase hover:text-amber-400 transition-colors"
+            >
+              {viewAllLabel}
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+          ) : null}
         </div>
 
         {/* Stacked horizontal cards */}
@@ -93,7 +95,6 @@ export function WhatsOnSection({
                   className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-[0.15em] text-muted-foreground uppercase hover:text-foreground transition-colors"
                 >
                   {item.ctaLabel}
-                  <span aria-hidden="true">&rarr;</span>
                 </Link>
               </div>
             </article>
@@ -103,3 +104,5 @@ export function WhatsOnSection({
     </section>
   );
 }
+
+export const WhatsOnSection = FeaturedWhatsOnSection;

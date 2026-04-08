@@ -21,6 +21,12 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 
   const firstImage = product.images[0]?.src;
   const displayPrice = parsePrice(product.price || product.regular_price);
+  const stockStatusLabel =
+    product.stock_status === "instock"
+      ? t("stock.inStock")
+      : product.stock_status === "onbackorder"
+        ? t("stock.onBackorder")
+        : t("stock.outOfStock");
   const plainDescription = stripHtmlTags(
     product.description || product.short_description || ""
   );
@@ -39,6 +45,9 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 
           <h1 className="text-3xl font-semibold tracking-tight">{product.name}</h1>
           <p className="text-lg text-muted-foreground">{t("price", { value: displayPrice.toFixed(2) })}</p>
+          <p className="text-sm text-muted-foreground">
+            {t("stock.label")}: {stockStatusLabel}
+          </p>
 
           {plainDescription ? (
             <p className="max-w-none text-sm text-muted-foreground">

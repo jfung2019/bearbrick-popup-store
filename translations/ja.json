@@ -39,6 +39,10 @@
       "title": "ポップアップストアの最新ハイライト",
       "description": "期間限定ドロップや先行公開など、いま注目すべき情報をまとめて確認できます。",
       "viewAll": "もっと見る",
+      "newsTag": "ニュース",
+      "readMore": "続きを読む",
+      "empty": "表示できるニュース記事はまだありません。",
+      "error": "ニュース記事を読み込めませんでした。",
       "items": {
         "dropWeekend": {
           "date": "3/22-3/24",
@@ -93,6 +97,12 @@
     "description": "WooCommerce API を利用した最初の一覧ページです。",
     "addToCart": "カートに追加",
     "price": "HK${value}",
+    "stock": {
+      "label": "在庫",
+      "inStock": "在庫あり",
+      "outOfStock": "在庫切れ",
+      "onBackorder": "取り寄せ"
+    },
     "empty": "現在表示できる商品がありません。",
     "error": "商品を読み込めませんでした。WooCommerce の環境変数と認証情報を確認してください。",
     "imageFallback": "画像なし",

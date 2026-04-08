@@ -25,7 +25,7 @@ interface FeaturedProductsProps {
 export function FeaturedProducts({
     products,
     title = "Featured Products",
-    subtitle = "Clinically proven, traceable and advanced botanical formulas that transform the state of your skin",
+    subtitle = "A quick look at the featured items available in our store.",
     viewAllHref,
     viewAllLabel
 }: FeaturedProductsProps) {
@@ -47,11 +47,13 @@ export function FeaturedProducts({
     };
 
     return (
-        <section className="bg-background py-16 sm:py-20 lg:py-24">
+        <section className="bg-background py-16 sm:py-20 lg:pt-0 lg:pb-24">
             <div className="w-full px-6 sm:px-8 lg:px-10">
                 <div className="flex items-center justify-between mb-8">
                     <div>
-                        <h3 className="text-2xl md:text-3xl font-bold mb-2 tracking-tight text-foreground text-left">{title}</h3>
+                        <h2 className="font-serif text-4xl italic tracking-tight text-foreground sm:text-5xl">
+                            {title}
+                        </h2>
                         <p className="text-base md:text-lg text-muted-foreground max-w-2xl text-left">{subtitle}</p>
                     </div>
                     <div className="flex gap-2">

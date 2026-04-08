@@ -1,10 +1,11 @@
 import { getTranslations } from "next-intl/server";
 import { PromoMarquee } from "@/components/promo-marquee";
 import { LuxuryHeroCarousel } from "@/components/luxury-hero-carousel";
-import { WhatsOnSection } from "@/components/home/whats-on-section";
-import { getPromoMarqueeItems, getBannerHeroSlides, getPostsBySlug } from "@/lib/wordpress";
+import { FeaturedWhatsOnSection } from "@/components/home/featured-whats-on-section";
+import { getPromoMarqueeItems, getBannerHeroSlides, getPostsBySlugs } from "@/lib/wordpress";
 import { FeaturedProducts, FeaturedProduct } from "@/components/home/featured-products";
 import { getProducts } from "@/server/woocommerce";
+import { stripHtmlTags } from "@/lib/utils";
 import ContactPage from "./contact/page";
 
 
@@ -21,6 +22,7 @@ export default async function HomePage({
     "FALLBACK DATA"
   ];
   const marqueeItems = await getPromoMarqueeItems(fallbackMarqueeItems, { categorySlug: "promotional_headline" });
+  const hasPromoMarquee = marqueeItems.length > 0;
 
   const fallbackHeroSlides = [
     {
@@ -60,41 +62,37 @@ export default async function HomePage({
 
   const heroSlides = await getBannerHeroSlides(fallbackHeroSlides, { categorySlug: "banner" });
 
-  const whatsOnItems = [
-    {
-      id: "drop-weekend",
-      date: t("whatsOn.items.dropWeekend.date"),
-      tag: t("whatsOn.items.dropWeekend.tag"),
-      title: t("whatsOn.items.dropWeekend.title"),
-      description: t("whatsOn.items.dropWeekend.description"),
-      href: `/${locale}/products`,
-      ctaLabel: t("whatsOn.items.dropWeekend.cta"),
-      imageSrc:
-        "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80",
-    },
-    {
-      id: "studio-preview",
-      date: t("whatsOn.items.studioPreview.date"),
-      tag: t("whatsOn.items.studioPreview.tag"),
-      title: t("whatsOn.items.studioPreview.title"),
-      description: t("whatsOn.items.studioPreview.description"),
-      href: `/${locale}/products`,
-      ctaLabel: t("whatsOn.items.studioPreview.cta"),
-      imageSrc:
-        "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=80",
-    },
-    {
-      id: "collector-night",
-      date: t("whatsOn.items.collectorNight.date"),
-      tag: t("whatsOn.items.collectorNight.tag"),
-      title: t("whatsOn.items.collectorNight.title"),
-      description: t("whatsOn.items.collectorNight.description"),
-      href: `/${locale}/products`,
-      ctaLabel: t("whatsOn.items.collectorNight.cta"),
-      imageSrc:
-        "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=80",
-    },
-  ];
+  const wpWhatsOnPosts = await getPostsBySlugs(["news", "featured"], {
+    perPage: 6,
+    match: "all",
+  });
+
+  const whatsOnItems = (wpWhatsOnPosts.length > 0
+    ? wpWhatsOnPosts
+    : await getPostsBySlugs(["news"], { perPage: 6 })
+  )
+    .slice(0, 3)
+    .map((post) => {
+      const parsedDate = new Date(post.date);
+      const formattedDate = Number.isNaN(parsedDate.getTime())
+        ? ""
+        : parsedDate.toLocaleDateString(locale, {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          });
+
+      return {
+        id: String(post.id),
+        date: formattedDate,
+        tag: t("whatsOn.newsTag"),
+        title: post.title,
+        description: post.description || stripHtmlTags(post.content),
+        href: post.link || `/${locale}/whats-on`,
+        ctaLabel: t("whatsOn.readMore"),
+        imageSrc: post.image || "/images/medicomtoy_edited.png",
+      };
+    });
 
   // debug
   // const test = await getPostsBySlug("banner");
@@ -126,14 +124,14 @@ export default async function HomePage({
 
   return (
     <main>
-      <PromoMarquee items={marqueeItems} />
-      <LuxuryHeroCarousel heroSlides={heroSlides} locale={locale} />
-      <WhatsOnSection
+      {hasPromoMarquee && <PromoMarquee items={marqueeItems} />}
+      <LuxuryHeroCarousel heroSlides={heroSlides} locale={locale} hasPromoMarquee={hasPromoMarquee} />
+      <FeaturedWhatsOnSection
         kicker={t("whatsOn.kicker")}
         title={t("whatsOn.title")}
         description={t("whatsOn.description")}
         viewAllLabel={t("whatsOn.viewAll")}
-        viewAllHref={`/${locale}/products`}
+        viewAllHref={`/${locale}/whats-on`}
         items={whatsOnItems}
       />
       {/* Featured Products Section */}

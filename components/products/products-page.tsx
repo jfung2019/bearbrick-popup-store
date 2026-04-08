@@ -235,7 +235,7 @@ export function ProductsPage({ initialProducts, fetchError }: Props) {
                   </p>
                 </Link>
 
-                <div className="mt-auto pt-4">
+                {/* <div className="mt-auto pt-4">
                   <AddToCartButton
                     product={{
                       productId: product.id,
@@ -244,7 +244,7 @@ export function ProductsPage({ initialProducts, fetchError }: Props) {
                       image: firstImage,
                     }}
                   />
-                </div>
+                </div> */}
               </article>
             );
           })}

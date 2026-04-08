@@ -39,6 +39,10 @@
       "title": "快閃店當前焦點",
       "description": "快速查看正在進行的限量發售、預覽活動與藏家專屬時段。",
       "viewAll": "查看更多",
+      "newsTag": "消息",
+      "readMore": "閱讀更多",
+      "empty": "目前沒有可顯示的消息文章。",
+      "error": "目前無法載入消息文章。",
       "items": {
         "dropWeekend": {
           "date": "3月22-24日",
@@ -93,6 +97,12 @@
     "description": "已建立第一版 WooCommerce 商品列表頁。",
     "addToCart": "加入購物車",
     "price": "HK${value}",
+    "stock": {
+      "label": "庫存",
+      "inStock": "有現貨",
+      "outOfStock": "缺貨",
+      "onBackorder": "可預購"
+    },
     "empty": "目前沒有可顯示的商品。",
     "error": "無法載入商品。請檢查 WooCommerce 環境變數與金鑰設定。",
     "imageFallback": "無圖片",

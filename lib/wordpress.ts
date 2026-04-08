@@ -16,6 +16,8 @@ export type WPPostBySlug = {
   id: number;
   title: string;
   slug: string;
+  date: string;
+  link: string;
   image: string | null;
   description: string;
   content: string;
@@ -64,17 +66,38 @@ export async function getPromoMarqueeItems(
   }
 }
 
-export async function getPostsBySlug(slug: string): Promise<WPPostBySlug[]> {
+export async function getPostsBySlug(
+  slug: string,
+  options?: { perPage?: number }
+): Promise<WPPostBySlug[]> {
   const WP_URL = `${WORDPRESS_URL}/wp-json/wp/v2`;
+  const perPage = options?.perPage ?? 100;
   try {
     const catRes = await axios.get(`${WP_URL}/categories?slug=${slug}`);
     const categories = catRes.data;
     if (!categories || categories.length === 0) return [];
 
-    const postsRes = await axios.get(`${WP_URL}/posts?categories=${categories[0].id}&_embed`);
-    const posts = postsRes.data;
+    const allPosts: any[] = [];
+    let page = 1;
+    let totalPages = 1;
 
-    return posts.map((post: any): WPPostBySlug => {
+    do {
+      const postsRes = await axios.get(`${WP_URL}/posts`, {
+        params: {
+          categories: categories[0].id,
+          _embed: true,
+          per_page: perPage,
+          page,
+        },
+      });
+
+      const posts = postsRes.data ?? [];
+      allPosts.push(...posts);
+      totalPages = Number(postsRes.headers?.["x-wp-totalpages"] ?? 1);
+      page += 1;
+    } while (page <= totalPages);
+
+    return allPosts.map((post: any): WPPostBySlug => {
       const content = post.content.rendered;
 
       // 1. Get Image (Featured first, then fallback to content)
@@ -99,6 +122,8 @@ export async function getPostsBySlug(slug: string): Promise<WPPostBySlug[]> {
         id: post.id,
         title: post.title.rendered,
         slug: post.slug,
+        date: post.date,
+        link: post.link,
         image: imageUrl,
         description: description,
         content: content,
@@ -108,4 +133,38 @@ export async function getPostsBySlug(slug: string): Promise<WPPostBySlug[]> {
     // Optionally log error details here
     return [];
   }
+}
+
+export async function getPostsBySlugs(
+  slugs: string[],
+  options?: { perPage?: number; match?: "any" | "all" }
+): Promise<WPPostBySlug[]> {
+  const uniqueSlugs = Array.from(new Set(slugs.filter(Boolean)));
+  const match = options?.match ?? "any";
+
+  if (uniqueSlugs.length === 0) {
+    return [];
+  }
+
+  const postsBySlug = await Promise.all(
+    uniqueSlugs.map((slug) => getPostsBySlug(slug, options))
+  );
+
+  const merged = postsBySlug.flat();
+  const postById = new Map<number, WPPostBySlug>();
+  const countById = new Map<number, number>();
+
+  for (const post of merged) {
+    if (!postById.has(post.id)) {
+      postById.set(post.id, post);
+    }
+
+    countById.set(post.id, (countById.get(post.id) ?? 0) + 1);
+  }
+
+  const requiredCount = match === "all" ? uniqueSlugs.length : 1;
+
+  return Array.from(postById.values())
+    .filter((post) => (countById.get(post.id) ?? 0) >= requiredCount)
+    .sort((first, second) => new Date(second.date).getTime() - new Date(first.date).getTime());
 }

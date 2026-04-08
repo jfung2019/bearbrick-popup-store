@@ -29,14 +29,18 @@ type LuxuryHeroCarouselProps = {
   heroSlides: WPBannerHeroSlide[];
   locale: string;
   autoPlayMs?: number;
+  hasPromoMarquee?: boolean;
 };
 
 const SWIPE_THRESHOLD = 56;
+const NAVBAR_OFFSET_PX = 64;
+const PROMO_MARQUEE_OFFSET_PX = 49;
 
 export function LuxuryHeroCarousel({
   heroSlides: heroSlides,
   locale: locale,
   autoPlayMs = 3000,
+  hasPromoMarquee = true,
 }: LuxuryHeroCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -231,12 +235,15 @@ export function LuxuryHeroCarousel({
     pointerDeltaXRef.current = 0;
   };
 
+  const heroViewportOffset = `${NAVBAR_OFFSET_PX + (hasPromoMarquee ? PROMO_MARQUEE_OFFSET_PX : 0)}px`;
+
   return (
     <section className="relative isolate overflow-hidden bg-[#0b0d10] text-white">
       <div
         ref={viewportRef}
-        className="relative min-h-[calc(100svh-73px)] w-full touch-pan-y"
-        onMouseEnter={() => autoplayRef.current?.kill()}
+        className="relative w-full touch-pan-y"
+        style={{ minHeight: `calc(100dvh - ${heroViewportOffset})` }}
+        // onMouseEnter={() => autoplayRef.current?.kill()}
         onMouseLeave={restartAutoplay}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
@@ -262,14 +269,17 @@ export function LuxuryHeroCarousel({
                 className="object-cover"
               />
               <div className="hero-vignette absolute inset-0" />
-              <div className="hero-grid absolute inset-0 opacity-50" />
-              <div className="hero-noise absolute inset-0 opacity-40" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_38%,rgba(182,211,231,0.34),transparent_22%),radial-gradient(circle_at_38%_62%,rgba(195,174,128,0.26),transparent_18%),linear-gradient(115deg,rgba(9,14,20,0.72),rgba(9,14,20,0.18)_45%,rgba(9,14,20,0.6))]" />
+              {/* <div className="hero-grid absolute inset-0 opacity-50" /> */}
+              {/* <div className="hero-noise absolute inset-0 opacity-40" /> */}
+              {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_38%,rgba(182,211,231,0.34),transparent_22%),radial-gradient(circle_at_38%_62%,rgba(195,174,128,0.26),transparent_18%),linear-gradient(115deg,rgba(9,14,20,0.72),rgba(9,14,20,0.18)_45%,rgba(9,14,20,0.6))]" /> */}
             </div>
           ))}
         </div>
 
-        <div className="relative z-10 flex min-h-[calc(100svh-73px)] w-full flex-col justify-end px-6 py-10 sm:px-8 lg:px-10 lg:py-12">
+        <div
+          className="relative z-10 flex w-full flex-col justify-end px-6 py-10 sm:px-8 lg:px-10 lg:py-12"
+          style={{ minHeight: `calc(100dvh - ${heroViewportOffset})` }}
+        >
           <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,1.05fr)_320px] lg:gap-10 xl:grid-cols-[minmax(0,1.1fr)_360px]">
             <div className="max-w-4xl pb-6 sm:pb-10 lg:pb-16">
               {heroSlides.map((slide, index) => (
@@ -280,10 +290,10 @@ export function LuxuryHeroCarousel({
                   }}
                   className="pointer-events-none absolute inset-x-6 bottom-32 max-w-4xl sm:inset-x-8 lg:inset-x-10"
                 >
-                  <div className="mb-4 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/8 px-4 py-2 text-[0.68rem] font-medium tracking-[0.36em] text-white/82 uppercase backdrop-blur-md">
+                  {/* <div className="mb-4 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/8 px-4 py-2 text-[0.68rem] font-medium tracking-[0.36em] text-white/82 uppercase backdrop-blur-md">
                     <span className={`h-2 w-2 rounded-full ${slide.accent}`} />
                     {'slide.eyebrow'}
-                  </div>
+                  </div> */}
                   <h1 className="max-w-4xl text-4xl font-semibold leading-[0.95] tracking-[-0.04em] text-white drop-shadow-[0_20px_80px_rgba(0,0,0,0.32)] sm:text-6xl lg:text-7xl xl:text-[5.8rem]">
                     {slide.title}
                   </h1>
@@ -296,7 +306,7 @@ export function LuxuryHeroCarousel({
                       href={`/${locale}/products`}
                       className="pointer-events-auto inline-flex items-center rounded-full bg-stone-100 px-6 py-3 text-sm font-semibold text-stone-950 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white"
                     >
-                      {"hi cta label"}
+                      {"Find out more"}
                     </Link>
                     <div className="pointer-events-none inline-flex items-center gap-3 text-sm text-white/66">
                       <span className="h-px w-12 bg-white/26" />
