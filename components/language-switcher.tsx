@@ -29,7 +29,7 @@ export function LanguageSwitcher() {
       <button
         type="button"
         aria-label="Change language"
-        className="inline-flex size-9 items-center justify-center rounded-md border transition"
+        className="inline-flex size-9 items-center justify-center rounded-md border transition cursor-pointer"
         tabIndex={0}
       >
         <Globe size={24} />
