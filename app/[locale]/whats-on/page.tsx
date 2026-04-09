@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { FeaturedWhatsOnSection } from "@/components/home/featured-whats-on-section";
+import { FeaturedWhatsOnSection as WhatsOnSection } from "@/components/home/featured-whats-on-section";
 import { getPostsBySlug } from "@/lib/wordpress";
 import { stripHtmlTags } from "@/lib/utils";
 
@@ -41,7 +41,7 @@ export default async function WhatsOnPage({
         tag: t("whatsOn.newsTag"),
         title: post.title,
         description: post.description || stripHtmlTags(post.content),
-        href: post.link || `/${locale}/whats-on`,
+        href: `/${locale}/whats-on/${post.slug}`,
         ctaLabel: t("whatsOn.readMore"),
         imageSrc: post.image || "/images/medicomtoy_edited.png",
       };
@@ -59,7 +59,7 @@ export default async function WhatsOnPage({
       {!fetchError && items.length === 0 ? (
         <p className="px-6 py-6 text-sm text-muted-foreground sm:px-8 lg:px-10">{t("whatsOn.empty")}</p>
       ) : null}
-      <FeaturedWhatsOnSection
+      <WhatsOnSection
         kicker={t("whatsOn.kicker")}
         title={t("whatsOn.title")}
         description={t("whatsOn.description")}

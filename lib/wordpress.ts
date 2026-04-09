@@ -23,6 +23,37 @@ export type WPPostBySlug = {
   content: string;
 };
 
+function mapWordPressPost(post: any): WPPostBySlug {
+  const content = post.content.rendered;
+
+  let imageUrl = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
+  if (!imageUrl) {
+    const imgMatch = content.match(/<img.*?src=["'](.*?)["']/);
+    imageUrl = imgMatch ? imgMatch[1] : null;
+  }
+
+  let description = "";
+  const figcaptionMatch = content.match(/<figcaption.*?>(.*?)<\/figcaption>/);
+  const pMatch = content.match(/<p.*?>(.*?)<\/p>/);
+
+  if (figcaptionMatch) {
+    description = figcaptionMatch[1].replace(/<[^>]*>?/gm, "");
+  } else if (pMatch) {
+    description = pMatch[1].replace(/<[^>]*>?/gm, "");
+  }
+
+  return {
+    id: post.id,
+    title: post.title.rendered,
+    slug: post.slug,
+    date: post.date,
+    link: post.link,
+    image: imageUrl,
+    description,
+    content,
+  };
+}
+
 // use axious, move to custom hook folder, add loading state, error handling, and unit tests.
 export async function getBannerHeroSlides(
   fallbackSlides: WPBannerHeroSlide[],
@@ -97,41 +128,33 @@ export async function getPostsBySlug(
       page += 1;
     } while (page <= totalPages);
 
-    return allPosts.map((post: any): WPPostBySlug => {
-      const content = post.content.rendered;
-
-      // 1. Get Image (Featured first, then fallback to content)
-      let imageUrl = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
-      if (!imageUrl) {
-        const imgMatch = content.match(/<img.*?src=["'](.*?)["']/);
-        imageUrl = imgMatch ? imgMatch[1] : null;
-      }
-
-      // 2. Get Caption/Description Text
-      let description = "";
-      const figcaptionMatch = content.match(/<figcaption.*?>(.*?)<\/figcaption>/);
-      const pMatch = content.match(/<p.*?>(.*?)<\/p>/);
-
-      if (figcaptionMatch) {
-        description = figcaptionMatch[1].replace(/<[^>]*>?/gm, '');
-      } else if (pMatch) {
-        description = pMatch[1].replace(/<[^>]*>?/gm, '');
-      }
-
-      return {
-        id: post.id,
-        title: post.title.rendered,
-        slug: post.slug,
-        date: post.date,
-        link: post.link,
-        image: imageUrl,
-        description: description,
-        content: content,
-      };
-    });
+    return allPosts.map((post: any): WPPostBySlug => mapWordPressPost(post));
   } catch (error) {
     // Optionally log error details here
     return [];
+  }
+}
+
+export async function getPostByPostSlug(slug: string): Promise<WPPostBySlug | null> {
+  const WP_URL = `${WORDPRESS_URL}/wp-json/wp/v2`;
+
+  try {
+    const response = await axios.get(`${WP_URL}/posts`, {
+      params: {
+        slug,
+        _embed: true,
+        per_page: 1,
+      },
+    });
+
+    const post = response.data?.[0];
+    if (!post) {
+      return null;
+    }
+
+    return mapWordPressPost(post);
+  } catch {
+    return null;
   }
 }
 

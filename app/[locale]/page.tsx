@@ -88,7 +88,7 @@ export default async function HomePage({
         tag: t("whatsOn.newsTag"),
         title: post.title,
         description: post.description || stripHtmlTags(post.content),
-        href: post.link || `/${locale}/whats-on`,
+        href: `/${locale}/whats-on/${post.slug}`,
         ctaLabel: t("whatsOn.readMore"),
         imageSrc: post.image || "/images/medicomtoy_edited.png",
       };
