@@ -195,7 +195,8 @@
     }
   },
   "Navbar": {
-    "merchandise": "商品",
+    "home": "首頁",
+    "shop": "商品",
     "whatsOn": "最新活動",
     "aboutUs": "關於我們"
   }

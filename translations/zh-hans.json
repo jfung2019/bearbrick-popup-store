@@ -195,7 +195,8 @@
     }
   },
   "Navbar": {
-    "merchandise": "商品",
+    "home": "首页",
+    "shop": "商品",
     "whatsOn": "最新活动",
     "aboutUs": "关于我们"
   }

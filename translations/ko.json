@@ -195,7 +195,8 @@
     }
   },
   "Navbar": {
-    "merchandise": "상품",
+    "home": "홈",
+    "shop": "상품",
     "whatsOn": "이벤트",
     "aboutUs": "소개"
   }

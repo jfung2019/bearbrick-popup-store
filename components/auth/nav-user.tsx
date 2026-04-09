@@ -68,44 +68,85 @@ export function NavUser() {
     router.refresh();
   };
 
+  const nextPath = pathname || `/${locale}`;
+  const loginHref = `/${locale}/login?next=${encodeURIComponent(nextPath)}`;
+  const registerHref = `/${locale}/register`;
+  const userIcon = (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="size-4" fill="none" stroke="currentColor" strokeWidth="2">
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 20a8 8 0 0 1 16 0" />
+    </svg>
+  );
+
   if (loading) {
     return (
       <div className="inline-flex size-9 items-center justify-center rounded-md border" aria-hidden="true">
-        <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2">
-          <circle cx="12" cy="8" r="4" />
-          <path d="M4 20a8 8 0 0 1 16 0" />
-        </svg>
+        {userIcon}
       </div>
     );
   }
 
   if (!session?.authenticated || !session.user) {
     return (
-      <Link
-        href={`/${locale}/login`}
-        aria-label={t("login")}
-        className="inline-flex size-9 items-center justify-center rounded-md border"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true" className="size-4" fill="none" stroke="currentColor" strokeWidth="2">
-          <circle cx="12" cy="8" r="4" />
-          <path d="M4 20a8 8 0 0 1 16 0" />
-        </svg>
-      </Link>
+      <div className="group relative">
+        <Link
+          href={loginHref}
+          aria-label={t("login")}
+          className="inline-flex size-9 items-center justify-center rounded-md border transition hover:bg-muted/40"
+        >
+          {userIcon}
+        </Link>
+
+        <div className="invisible absolute right-0 top-full z-20 mt-2 w-44 rounded-md border border-input bg-background p-2 opacity-0 shadow-lg transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+          <div className="px-2 pb-2 text-xs text-muted-foreground">
+            {t("login")} / {t("register")}
+          </div>
+          <div className="flex flex-col gap-1">
+            <Link
+              href={loginHref}
+              className="rounded-sm px-2 py-2 text-sm hover:bg-muted"
+            >
+              {t("login")}
+            </Link>
+            <Link
+              href={registerHref}
+              className="rounded-sm px-2 py-2 text-sm hover:bg-muted"
+            >
+              {t("register")}
+            </Link>
+          </div>
+        </div>
+      </div>
     );
   }
 
   return (
-    <div className="flex items-center gap-2">
-      <span className="hidden max-w-28 truncate text-sm text-muted-foreground sm:inline">
-        {session.user.name}
-      </span>
+    <div className="group relative">
       <button
         type="button"
-        onClick={handleLogout}
-        className="inline-flex h-9 items-center rounded-md border px-3 text-sm"
+        aria-label={session.user.name}
+        className="inline-flex size-9 items-center justify-center rounded-md border transition hover:bg-muted/40"
       >
-        {t("logout")}
+        {userIcon}
       </button>
+
+      <div className="invisible absolute right-0 top-full z-20 mt-2 w-52 rounded-md border border-input bg-background p-2 opacity-0 shadow-lg transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+        <div className="border-b border-border px-2 pb-2">
+          <div className="truncate text-sm font-medium">{session.user.name}</div>
+          {session.user.email ? (
+            <div className="truncate text-xs text-muted-foreground">{session.user.email}</div>
+          ) : null}
+        </div>
+        <div className="pt-2">
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="w-full rounded-sm px-2 py-2 text-left text-sm hover:bg-muted"
+          >
+            {t("logout")}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

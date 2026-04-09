@@ -29,7 +29,8 @@ export function Navbar({ locale }: NavbarProps) {
           />
         </Link>
         <div className="ml-auto flex items-center gap-3">
-          <Link href={`/${locale}/products`} className="text-sm text-white/80 hover:text-white transition-colors">{t("merchandise")}</Link>
+          <Link href={`/${locale}/`} className="text-sm text-white/80 hover:text-white transition-colors">{t("home")}</Link>
+          <Link href={`/${locale}/products`} className="text-sm text-white/80 hover:text-white transition-colors">{t("shop")}</Link>
           <Link href={`/${locale}#whats-on`} className="text-sm text-white/80 hover:text-white transition-colors">{t("whatsOn")}</Link>
           <Link href={`/${locale}/about`} className="text-sm text-white/80 hover:text-white transition-colors">{t("aboutUs")}</Link>
           <LanguageSwitcher />

@@ -195,7 +195,8 @@
     }
   },
   "Navbar": {
-    "merchandise": "商品",
+    "home": "ホーム",
+    "shop": "商品",
     "whatsOn": "イベント",
     "aboutUs": "私たちについて"
   }

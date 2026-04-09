@@ -195,7 +195,8 @@
     }
   },
   "Navbar": {
-    "merchandise": "Merchandise",
+    "home": "Home",
+    "shop": "Shop",
     "whatsOn": "What's On",
     "aboutUs": "About Us"
   }
