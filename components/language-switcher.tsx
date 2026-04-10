@@ -41,7 +41,7 @@ export function LanguageSwitcher() {
         {routing.locales.map((loc) => (
           <li key={loc}>
             <button
-              className={`w-full text-left px-4 py-2 text-sm hover:bg-muted ${loc === locale ? 'font-bold' : ''}`}
+              className={`w-full px-4 py-2 text-left text-sm transition-colors hover:bg-muted hover:text-yellow-400/90 ${loc === locale ? "font-bold text-yellow-400/90" : "text-foreground"}`}
               onClick={() => {
                 switchLocale(loc);
               }}

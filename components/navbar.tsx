@@ -149,7 +149,7 @@ export function Navbar({ locale }: NavbarProps) {
               <Link
                 key={key}
                 href={`/${locale}${path}`}
-                className="text-sm text-white/80 transition-colors hover:text-white"
+                className="text-sm text-white/80 transition-colors hover:text-yellow-400/90"
               >
                 {t(key)}
               </Link>
@@ -228,7 +228,7 @@ export function Navbar({ locale }: NavbarProps) {
                 <Link
                   href={`/${locale}${path}`}
                   onClick={close}
-                  className="block py-5 text-[2.55rem] font-light leading-tight tracking-tight text-white transition-colors hover:text-white/55 sm:text-6xl"
+                  className="block py-5 text-[2.55rem] font-light leading-tight tracking-tight text-white transition-colors hover:text-yellow-400/90 sm:text-6xl"
                 >
                   {t(key)}
                 </Link>
@@ -244,7 +244,7 @@ export function Navbar({ locale }: NavbarProps) {
                 type="button"
                 onClick={() => setIsMembershipOpen((prev) => !prev)}
                 aria-expanded={isMembershipOpen}
-                className="flex w-full items-center justify-between py-5 text-left text-[2.55rem] font-light leading-tight tracking-tight text-white transition-colors hover:text-white/55 sm:text-6xl"
+                className="flex w-full items-center justify-between py-5 text-left text-[2.55rem] font-light leading-tight tracking-tight text-white transition-colors hover:text-yellow-400/90 sm:text-6xl"
               >
                 {t("membership")}
                 <ChevronDown
@@ -258,14 +258,14 @@ export function Navbar({ locale }: NavbarProps) {
                   <Link
                     href={`/${locale}/register`}
                     onClick={close}
-                    className="text-base font-medium text-white/75 transition-colors hover:text-white"
+                    className="text-base font-medium text-white/75 transition-colors hover:text-yellow-400/90"
                   >
                     {t("signUp")}
                   </Link>
                   <Link
                     href={`/${locale}/login`}
                     onClick={close}
-                    className="text-base font-medium text-white/75 transition-colors hover:text-white"
+                    className="text-base font-medium text-white/75 transition-colors hover:text-yellow-400/90"
                   >
                     {t("logIn")}
                   </Link>
@@ -281,7 +281,7 @@ export function Navbar({ locale }: NavbarProps) {
               <Link
                 href={`/${locale}/cart`}
                 onClick={close}
-                className="block py-5 text-[2.55rem] font-light leading-tight tracking-tight text-white transition-colors hover:text-white/55 sm:text-6xl"
+                className="block py-5 text-[2.55rem] font-light leading-tight tracking-tight text-white transition-colors hover:text-yellow-400/90 sm:text-6xl"
               >
                 {t("myCart")}
               </Link>
@@ -296,7 +296,7 @@ export function Navbar({ locale }: NavbarProps) {
                 type="button"
                 onClick={() => setIsLanguageOpen((prev) => !prev)}
                 aria-expanded={isLanguageOpen}
-                className="flex w-full items-center justify-between py-5 text-left text-[2.55rem] font-light leading-tight tracking-tight text-white transition-colors hover:text-white/55 sm:text-6xl"
+                className="flex w-full items-center justify-between py-5 text-left text-[2.55rem] font-light leading-tight tracking-tight text-white transition-colors hover:text-yellow-400/90 sm:text-6xl"
               >
                 {t("language")}
                 <ChevronDown
@@ -312,7 +312,7 @@ export function Navbar({ locale }: NavbarProps) {
                       key={loc}
                       type="button"
                       onClick={() => switchLocale(loc)}
-                      className={`text-left text-base font-medium transition-colors hover:text-white ${loc === activeLocale ? "text-white" : "text-white/75"
+                      className={`text-left text-base font-medium transition-colors hover:text-yellow-400/90 ${loc === activeLocale ? "text-yellow-400/90" : "text-white/75"
                         }`}
                     >
                       {nativeNames[loc] ?? loc}
