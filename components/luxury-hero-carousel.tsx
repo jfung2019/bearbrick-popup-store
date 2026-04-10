@@ -35,6 +35,29 @@ type LuxuryHeroCarouselProps = {
 const SWIPE_THRESHOLD = 56;
 const NAVBAR_OFFSET_PX = 64;
 const PROMO_MARQUEE_OFFSET_PX = 49;
+const DEFAULT_CTA_PATH = "";
+const ABSOLUTE_URL_PATTERN = /^[a-zA-Z][a-zA-Z\d+\-.]*:/;
+
+function resolveSlideHref(slideHref: string | undefined, locale: string): string {
+  const fallbackHref = `/${locale}${DEFAULT_CTA_PATH}`;
+  const rawHref = slideHref?.trim();
+
+  if (!rawHref) {
+    return fallbackHref;
+  }
+
+  if (rawHref.startsWith("#") || rawHref.startsWith("//") || ABSOLUTE_URL_PATTERN.test(rawHref)) {
+    return rawHref;
+  }
+
+  const normalizedPath = rawHref.startsWith("/") ? rawHref : `/${rawHref}`;
+
+  if (normalizedPath === `/${locale}` || normalizedPath.startsWith(`/${locale}/`)) {
+    return normalizedPath;
+  }
+
+  return `/${locale}${normalizedPath}`;
+}
 
 export function LuxuryHeroCarousel({
   heroSlides: heroSlides,
@@ -302,11 +325,10 @@ export function LuxuryHeroCarousel({
                   </p>
                   <div className="mt-8 flex flex-wrap items-center gap-4">
                     <Link
-                      // update later to required href from slide data
-                      href={`/${locale}/products`}
+                      href={resolveSlideHref(slide.href, locale)}
                       className="pointer-events-auto inline-flex items-center rounded-full bg-stone-100 px-6 py-3 text-sm font-semibold text-stone-950 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white"
                     >
-                      {"Find out more"}
+                      {slide.ctaLabel || "Find out more"}
                     </Link>
                     <div className="pointer-events-none inline-flex items-center gap-3 text-sm text-white/66">
                       <span className="h-px w-12 bg-white/26" />

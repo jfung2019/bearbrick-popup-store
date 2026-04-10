@@ -8,6 +8,8 @@ export type WPBannerHeroSlide = {
   description: string;
   imageSrc: string;
   accent: string;
+  href?: string;
+  ctaLabel?: string;
 };
 
 export type WPPromoMarqueeItems = string[];
@@ -21,10 +23,22 @@ export type WPPostBySlug = {
   image: string | null;
   description: string;
   content: string;
+  ctaPath?: string;
+  ctaLabel?: string;
 };
+
+function normalizeOptionalString(value: unknown): string | undefined {
+  if (typeof value !== "string") {
+    return undefined;
+  }
+
+  const trimmed = value.trim();
+  return trimmed ? trimmed : undefined;
+}
 
 function mapWordPressPost(post: any): WPPostBySlug {
   const content = post.content.rendered;
+  const wpAdvanceCustomField = post?.acf ?? {};
 
   let imageUrl = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
   if (!imageUrl) {
@@ -42,6 +56,15 @@ function mapWordPressPost(post: any): WPPostBySlug {
     description = pMatch[1].replace(/<[^>]*>?/gm, "");
   }
 
+  const ctaPath =
+    normalizeOptionalString(wpAdvanceCustomField.cta_path) ??
+    normalizeOptionalString(wpAdvanceCustomField.cta_url) ??
+    normalizeOptionalString(wpAdvanceCustomField.cta_link?.url);
+
+  const ctaLabel =
+    normalizeOptionalString(wpAdvanceCustomField.cta_label) ??
+    normalizeOptionalString(wpAdvanceCustomField.cta_link?.title);
+
   return {
     id: post.id,
     title: post.title.rendered,
@@ -51,6 +74,8 @@ function mapWordPressPost(post: any): WPPostBySlug {
     image: imageUrl,
     description,
     content,
+    ctaPath,
+    ctaLabel,
   };
 }
 
@@ -70,6 +95,8 @@ export async function getBannerHeroSlides(
         description: post.description,
         imageSrc: post.image ?? "",
         accent: "bg-[#d9c293]", // You can customize or randomize accent if needed
+        href: post.ctaPath,
+        ctaLabel: post.ctaLabel,
       }))
       .filter((slide: WPBannerHeroSlide) => slide.imageSrc)
       .slice(0, perPage);
