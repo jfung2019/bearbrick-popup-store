@@ -198,6 +198,14 @@
     "home": "首页",
     "shop": "商品",
     "whatsOn": "最新活动",
-    "aboutUs": "关于我们"
+    "aboutUs": "关于我们",
+    "contact": "联系我们",
+    "membership": "会员",
+    "language": "语言",
+    "signUp": "注册",
+    "logIn": "登录",
+    "myCart": "购物车",
+    "menu": "菜单",
+    "searchPlaceholder": "搜索..."
   }
 }

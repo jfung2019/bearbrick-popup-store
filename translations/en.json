@@ -198,6 +198,14 @@
     "home": "Home",
     "shop": "Shop",
     "whatsOn": "What's On",
-    "aboutUs": "About Us"
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "membership": "Membership",
+    "language": "Language",
+    "signUp": "Sign Up",
+    "logIn": "Log In",
+    "myCart": "My Cart",
+    "menu": "Menu",
+    "searchPlaceholder": "Type to Search"
   }
 }

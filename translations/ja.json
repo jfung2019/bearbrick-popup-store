@@ -198,6 +198,14 @@
     "home": "ホーム",
     "shop": "商品",
     "whatsOn": "イベント",
-    "aboutUs": "私たちについて"
+    "aboutUs": "私たちについて",
+    "contact": "お問い合わせ",
+    "membership": "メンバーシップ",
+    "language": "言語",
+    "signUp": "新規登録",
+    "logIn": "ログイン",
+    "myCart": "マイカート",
+    "menu": "メニュー",
+    "searchPlaceholder": "検索..."
   }
 }

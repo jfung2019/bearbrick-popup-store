@@ -198,6 +198,14 @@
     "home": "홈",
     "shop": "상품",
     "whatsOn": "이벤트",
-    "aboutUs": "소개"
+    "aboutUs": "소개",
+    "contact": "연락처",
+    "membership": "멤버십",
+    "language": "언어",
+    "signUp": "회원가입",
+    "logIn": "로그인",
+    "myCart": "장바구니",
+    "menu": "메뉴",
+    "searchPlaceholder": "검색..."
   }
 }
