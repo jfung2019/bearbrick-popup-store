@@ -45,7 +45,7 @@ export function FeaturedWhatsOnSection({
           {viewAllLabel && viewAllHref ? (
             <Link
               href={viewAllHref}
-              className="inline-flex shrink-0 items-center gap-1.5 text-sm font-medium tracking-wide text-amber-500 uppercase hover:text-amber-400 transition-colors"
+              className="inline-flex shrink-0 items-center gap-1.5 text-sm font-medium tracking-wide text-yellow-400/80 uppercase hover:text-yellow-400 transition-colors"
             >
               {viewAllLabel}
               <span aria-hidden="true">&rarr;</span>
@@ -74,7 +74,7 @@ export function FeaturedWhatsOnSection({
               {/* Content */}
               <div className="flex flex-col justify-center gap-3">
                 <div className="flex items-center gap-3">
-                  <span className="text-xs font-semibold tracking-wide text-amber-500 uppercase">
+                  <span className="text-xs font-semibold tracking-wide text-yellow-400/80 uppercase">
                     {item.tag}
                   </span>
                   <span className="text-xs font-medium tracking-wide text-muted-foreground uppercase">

@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useFeaturedSliderAnimation } from "../../hooks/use-featured-slider-animation";
 
 export type FeaturedProduct = {
@@ -61,17 +62,17 @@ export function FeaturedProducts({
                             aria-label="Scroll left"
                             onClick={() => scrollTo("left")}
                             disabled={!canScrollLeft}
-                            className="rounded-full bg-white shadow p-2 border border-gray-200 disabled:opacity-40 disabled:cursor-not-allowed"
+                            className="inline-flex size-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white/90 backdrop-blur-md transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-35"
                         >
-                            <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" /></svg>
+                            <ChevronLeft className="size-5" />
                         </button>
                         <button
                             aria-label="Scroll right"
                             onClick={() => scrollTo("right")}
                             disabled={!canScrollRight}
-                            className="rounded-full bg-white shadow p-2 border border-gray-200 disabled:opacity-40 disabled:cursor-not-allowed"
+                            className="inline-flex size-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white/90 backdrop-blur-md transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-35"
                         >
-                            <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg>
+                            <ChevronRight className="size-5" />
                         </button>
                     </div>
                 </div>
